@@ -1,4 +1,4 @@
-# DA_BASIC_LICENSING
+# DA_EasyAuth_Licensing
 
 #Funktionality
 
