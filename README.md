@@ -2,7 +2,7 @@
 
 #Funktionality
 
-Very simple, basic HWID (hardware id) license system.
+Very simple HWID-based (hardware-id) license system.
 
 You generate keys with the license server and give the program to the client with a key. On the first run, the client will connect to the server and update its information with the client-computers HWID and activation date. 
 
