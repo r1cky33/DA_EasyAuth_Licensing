@@ -21,7 +21,6 @@
 </div>
 
 <!-- Main content -->
-<div style ="">
 <h1 style ="text-align: center; margin-left: 18%">Welcome back, username!</h1>
 <div class="w3-row-padding w3-center w3-margin-top" style="margin-left:18%">
     <div class="w3-third">
@@ -45,17 +44,16 @@
         </div>
     </div>
 </div>
-</div>
 <!-- Sidebar/menu -->
 <nav class="w3-sidebar w3-bar-block w3-top w3-large" style="z-index:3;width:18%;font-weight:bold; background-color: #222222;" id="mySidebar"><br>
     <div style="padding-left: 35px; padding-bottom: 30px;" class="w3-container">
         <img src="moga_logo.png" alt="logo" style="width: 230px;height: 130px;">
     </div>
-    <div class="w3-bar-block" style="font-size: x-large;">
-        <a href="" onclick="w3_close()" style="color: whitesmoke; padding-bottom: 25px; text-align: center;" class="w3-bar-item w3-button w3-hover-gray">Dashboard</a>
-        <a href="" onclick="w3_close()" style="color: whitesmoke; padding-bottom: 25px; text-align: center;" class="w3-bar-item w3-button w3-hover-gray">Products</a>
-        <a href="" onclick="w3_close()" style="color: whitesmoke; padding-bottom: 25px; text-align: center;" class="w3-bar-item w3-button w3-hover-gray">News</a>
-        <a href="" onclick="w3_close()" style="color: whitesmoke; padding-bottom: 25px; text-align: center;" class="w3-bar-item w3-button w3-hover-gray">Support</a>
+    <div id= "myButtons" class="w3-bar-block" style="font-size: x-large;">
+        <a id = "dashboard-page" href="dashboard.php" onclick="w3_close()" style="color: whitesmoke; padding-bottom: 25px; text-align: center;" class="w3-bar-item w3-button w3-hover-red btn sideBarMarker">Dashboard</a>
+        <a id = "products-page" href="products.php" onclick="w3_close()" style="color: whitesmoke; padding-bottom: 25px; text-align: center;" class="w3-bar-item w3-button w3-hover-red btn">Products</a>
+        <a id = "news-page" href="news.php" onclick="w3_close()" style="color: whitesmoke; padding-bottom: 25px; text-align: center;" class="w3-bar-item w3-button w3-hover-red btn">News</a>
+        <a id = "support-page" href="support.php" onclick="w3_close()" style="color: whitesmoke; padding-bottom: 25px; text-align: center;" class="w3-bar-item w3-button w3-hover-red btn">Support</a>
     </div>
     <a href="javascript:void(0)" onclick="w3_close()" class="w3-button w3-hide-large w3-display-bottom" style="100%;font-size:22px;">Close Menu</a>
 </nav>
@@ -88,6 +86,21 @@
         var captionText = document.getElementById("caption");
         captionText.innerHTML = element.alt;
     }
+<!-- HUANS SCRIPT WOS I UMASUNST GSCHRIEM HOB (1h)
+    function showActivePage(evt, button) {
+        var i, x, btn;
+        x = document.getElementsByClassName("btn");
+        for (i = 0; i < x.length; i++) {
+            x[i].style.display = "none";
+        }
+        btn = document.getElementsByClassName("btn");
+        for (i = 0; i < x.length; i++) {
+            btn[i].className = btn[i].className.replace("sideBarMarker", "");
+        }
+        document.getElementById(button).style.display = "block";
+        evt.currentTarget.className += "sideBarMarker";
+    }
+    -->
 </script>
 
 </body>

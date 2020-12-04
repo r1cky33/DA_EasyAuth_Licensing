@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c989b58c-cfc5-41fc-adc8-1149a3e5c0ce" name="Default Changelist" comment="" />
+    <list default="true" id="c989b58c-cfc5-41fc-adc8-1149a3e5c0ce" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dashboard.php" beforeDir="false" afterPath="$PROJECT_DIR$/dashboard.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/style.css" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -58,6 +62,8 @@
       <workItem from="1607082689556" duration="764000" />
       <workItem from="1607084217607" duration="6117000" />
       <workItem from="1607098526262" duration="6680000" />
+      <workItem from="1607119255685" duration="3000000" />
+      <workItem from="1607122353166" duration="372000" />
     </task>
     <servers />
   </component>
@@ -85,6 +91,10 @@
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
     <state x="1500" y="455" key="FileChooserDialogImpl/0.0.3440.1400/3440.290.1280.1024@0.0.3440.1400" timestamp="1607083063223" />
+    <state x="694" y="627" key="NewPhpFileDialog" timestamp="1607121718064">
+      <screen x="0" y="0" width="3440" height="1400" />
+    </state>
+    <state x="694" y="627" key="NewPhpFileDialog/0.0.3440.1400/3440.290.1280.1024@0.0.3440.1400" timestamp="1607121718064" />
     <state x="1221" y="345" key="SettingsEditor" timestamp="1607084389896">
       <screen x="0" y="0" width="3440" height="1400" />
     </state>

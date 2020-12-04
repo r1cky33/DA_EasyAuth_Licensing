@@ -12,6 +12,10 @@ button:hover {
     color: #222222;
 }
 
-a:active {
-    border-left: 5px solid #EE494A;
+.btn{
+
+}
+
+.sideBarMarker{
+    border-left: 7px solid #EE494A !important;
 }
