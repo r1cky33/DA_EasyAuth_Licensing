@@ -50,10 +50,16 @@
         <img src="moga_logo.png" alt="logo" style="width: 230px;height: 130px;">
     </div>
     <div id= "myButtons" class="w3-bar-block" style="font-size: x-large;">
-        <a id = "dashboard-page" href="dashboard.php" onclick="w3_close()" style="color: whitesmoke; padding-bottom: 25px; text-align: center;" class="w3-bar-item w3-button w3-hover-red btn sideBarMarker">Dashboard</a>
-        <a id = "products-page" href="products.php" onclick="w3_close()" style="color: whitesmoke; padding-bottom: 25px; text-align: center;" class="w3-bar-item w3-button w3-hover-red btn">Products</a>
-        <a id = "news-page" href="news.php" onclick="w3_close()" style="color: whitesmoke; padding-bottom: 25px; text-align: center;" class="w3-bar-item w3-button w3-hover-red btn">News</a>
-        <a id = "support-page" href="support.php" onclick="w3_close()" style="color: whitesmoke; padding-bottom: 25px; text-align: center;" class="w3-bar-item w3-button w3-hover-red btn">Support</a>
+        <a id = "dashboard-page" href="dashboard.php" onclick="w3_close()" style="color: whitesmoke; text-align: center;" class="w3-bar-item w3-button w3-hover-red btn sideBarMarker">Dashboard</a>
+        <div class ="w3-dropdown-hover ">
+            <a id = "products-page" href="products.php" onclick="w3_close()" style="color: whitesmoke; text-align: center;" class="w3-bar-item w3-button w3-hover-red btn">Products</a>
+            <div class="w3-dropdown-content w3-bar-block w3-card-4">
+                <a href="xyz" style="background-color: #222222; color: whitesmoke; padding-bottom: 10px; text-align: center;" class ="w3-bar-item w3-button w3-hover-red">product xyz</a>
+                <a href="123" style="background-color: #222222; color: whitesmoke; padding-bottom: 10px; text-align: center;" class ="w3-bar-item w3-button w3-hover-red">product 123</a>
+            </div>
+        </div>
+        <a id = "news-page" href="news.php" onclick="w3_close()" style="color: whitesmoke;  text-align: center;" class="w3-bar-item w3-button w3-hover-red btn">News</a>
+        <a id = "support-page" href="support.php" onclick="w3_close()" style="color: whitesmoke;  text-align: center;" class="w3-bar-item w3-button w3-hover-red btn">Support</a>
     </div>
     <a href="javascript:void(0)" onclick="w3_close()" class="w3-button w3-hide-large w3-display-bottom" style="100%;font-size:22px;">Close Menu</a>
 </nav>

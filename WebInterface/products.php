@@ -21,18 +21,54 @@
 </div>
 
 <!-- Main content -->
-<h1 style ="text-align: center; margin-left: 18%">Here you can see the assortment of products we are offering!</h1>
-
+<button style ="background-color: #EE494A; margin-left: 80%; margin-top: 3%" class ="w3-large">Upload your Software here</button>
+<div style="margin-left:18%; margin-top:7%" class="w3-responsive w3-container">
+    <table class="w3-table w3-bordered w3-border w3-centered">
+       <thead class ="w3-xlarge">
+           <tr>
+                <th> </th>
+                <th>Product xyz</th>
+                <th> </th>
+            </tr>
+     </thead>
+     <tr>
+            <th>License</th>
+            <th>HWID</th>
+            <th>Duration</th>
+        </tr>
+        <tr>
+            <td>test</td>
+            <td>test</td>
+            <td>69 days remaining</td>
+        </tr>
+        <tr>
+            <td>another test</td>
+            <td>another test</td>
+            <td>88 days remaining</td>
+        </tr>
+    </table>
+    <div style="text-align: center; margin-top: 1%" class="w3-large">
+        <button style="margin-right: 5%; background-color: #EE494A">Add</button>
+        <button style="margin-right: 5%; background-color: #EE494A"">Modify</button>
+        <button style="margin-right: 5%; background-color: #EE494A"">Delete</button>
+    </div>
+</div>
 <!-- Sidebar/menu -->
 <nav class="w3-sidebar w3-bar-block w3-top w3-large" style="z-index:3;width:18%;font-weight:bold; background-color: #222222;" id="mySidebar"><br>
     <div style="padding-left: 35px; padding-bottom: 30px;" class="w3-container">
         <img src="moga_logo.png" alt="logo" style="width: 230px;height: 130px;">
     </div>
     <div id= "myButtons" class="w3-bar-block" style="font-size: x-large;">
-        <a id = "dashboard-page" href="dashboard.php" onclick="w3_close()" style="color: whitesmoke; padding-bottom: 25px; text-align: center;" class="w3-bar-item w3-button w3-hover-red btn">Dashboard</a>
-        <a id = "products-page" href="products.php" onclick="w3_close()" style="color: whitesmoke; padding-bottom: 25px; text-align: center;" class="w3-bar-item w3-button w3-hover-red btn sideBarMarker">Products</a>
-        <a id = "news-page" href="news.php" onclick="w3_close()" style="color: whitesmoke; padding-bottom: 25px; text-align: center;" class="w3-bar-item w3-button w3-hover-red btn">News</a>
-        <a id = "support-page" href="support.php" onclick="w3_close()" style="color: whitesmoke; padding-bottom: 25px; text-align: center;" class="w3-bar-item w3-button w3-hover-red btn">Support</a>
+        <a id = "dashboard-page" href="dashboard.php" onclick="w3_close()" style="color: whitesmoke; text-align: center;" class="w3-bar-item w3-button w3-hover-red btn">Dashboard</a>
+        <div class ="w3-dropdown-hover ">
+            <a id = "products-page" href="products.php" onclick="w3_close()" style="color: whitesmoke; text-align: center;" class="w3-bar-item w3-button w3-hover-red btn">Products</a>
+            <div class="w3-dropdown-content w3-bar-block w3-card-4">
+                <a href="xyz" style="background-color: #222222; color: whitesmoke; padding-bottom: 10px; text-align: center;" class ="w3-bar-item w3-button w3-hover-red">product xyz</a>
+                <a href="123" style="background-color: #222222; color: whitesmoke; padding-bottom: 10px; text-align: center;" class ="w3-bar-item w3-button w3-hover-red">product 123</a>
+            </div>
+        </div>
+        <a id = "news-page" href="news.php" onclick="w3_close()" style="color: whitesmoke; text-align: center;" class="w3-bar-item w3-button w3-hover-red btn">News</a>
+        <a id = "support-page" href="support.php" onclick="w3_close()" style="color: whitesmoke; text-align: center;" class="w3-bar-item w3-button w3-hover-red btn">Support</a>
     </div>
     <a href="javascript:void(0)" onclick="w3_close()" class="w3-button w3-hide-large w3-display-bottom" style="100%;font-size:22px;">Close Menu</a>
 </nav>

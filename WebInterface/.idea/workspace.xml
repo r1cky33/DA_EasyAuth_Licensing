@@ -4,6 +4,7 @@
     <list default="true" id="c989b58c-cfc5-41fc-adc8-1149a3e5c0ce" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dashboard.php" beforeDir="false" afterPath="$PROJECT_DIR$/dashboard.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products.php" beforeDir="false" afterPath="$PROJECT_DIR$/products.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -35,9 +36,11 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="DatabaseDriversLRU" value="mysql" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../xampp/htdocs/DA" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
@@ -64,6 +67,11 @@
       <workItem from="1607098526262" duration="6680000" />
       <workItem from="1607119255685" duration="3000000" />
       <workItem from="1607122353166" duration="372000" />
+      <workItem from="1607355813316" duration="3343000" />
+      <workItem from="1607382488298" duration="3697000" />
+      <workItem from="1607441231298" duration="743000" />
+      <workItem from="1607631701902" duration="4474000" />
+      <workItem from="1607636320459" duration="69000" />
     </task>
     <servers />
   </component>
@@ -83,21 +91,33 @@
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
     <state x="1427" y="343" key="#PHP/0.0.3440.1400/3440.290.1280.1024@0.0.3440.1400" timestamp="1607084377395" />
-    <state x="1174" y="355" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1606847012679">
+    <state x="236" y="545" key="#SQL_Dialects" timestamp="1607635640213">
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
-    <state x="1174" y="355" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.3440.1400/3440.290.1280.1024@0.0.3440.1400" timestamp="1606847012679" />
-    <state x="1500" y="455" key="FileChooserDialogImpl" timestamp="1607083063223">
+    <state x="236" y="545" key="#SQL_Dialects/0.0.3440.1400/3440.290.1280.1024@0.0.3440.1400" timestamp="1607635640213" />
+    <state x="1002" y="346" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1607635800527">
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
-    <state x="1500" y="455" key="FileChooserDialogImpl/0.0.3440.1400/3440.290.1280.1024@0.0.3440.1400" timestamp="1607083063223" />
-    <state x="694" y="627" key="NewPhpFileDialog" timestamp="1607121718064">
+    <state x="1002" y="346" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.3440.1400/3440.290.1280.1024@0.0.3440.1400" timestamp="1607635800527" />
+    <state x="1500" y="455" key="FileChooserDialogImpl" timestamp="1607636385418">
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
-    <state x="694" y="627" key="NewPhpFileDialog/0.0.3440.1400/3440.290.1280.1024@0.0.3440.1400" timestamp="1607121718064" />
+    <state x="1500" y="455" key="FileChooserDialogImpl/0.0.3440.1400/3440.290.1280.1024@0.0.3440.1400" timestamp="1607636385418" />
+    <state width="196" height="457" key="HiddenNamespacesPopup" timestamp="1607635810316">
+      <screen x="0" y="0" width="3440" height="1400" />
+    </state>
+    <state width="196" height="457" key="HiddenNamespacesPopup/0.0.3440.1400/3440.290.1280.1024@0.0.3440.1400" timestamp="1607635810316" />
+    <state x="694" y="627" key="NewPhpFileDialog" timestamp="1607636069537">
+      <screen x="0" y="0" width="3440" height="1400" />
+    </state>
+    <state x="694" y="627" key="NewPhpFileDialog/0.0.3440.1400/3440.290.1280.1024@0.0.3440.1400" timestamp="1607636069537" />
     <state x="1221" y="345" key="SettingsEditor" timestamp="1607084389896">
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
     <state x="1221" y="345" key="SettingsEditor/0.0.3440.1400/3440.290.1280.1024@0.0.3440.1400" timestamp="1607084389896" />
+    <state x="677" y="617" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1607633491049">
+      <screen x="0" y="0" width="3440" height="1400" />
+    </state>
+    <state x="677" y="617" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.3440.1400/3440.290.1280.1024@0.0.3440.1400" timestamp="1607633491049" />
   </component>
 </project>
