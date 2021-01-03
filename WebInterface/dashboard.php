@@ -1,3 +1,11 @@
+<?php include 'server.php'?>
+<?php
+// redirect user to login if not logged in
+if (empty($_SESSION['id'])) {
+    header('location: login.php');
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <title>EasyAuth licensing</title>
@@ -21,7 +29,7 @@
 </div>
 
 <!-- Main content -->
-<h1 style ="text-align: center; margin-left: 18%">Welcome back, username!</h1>
+<h1 style ="text-align: center; margin-left: 18%">Welcome back, !</h1>
 <div class="w3-row-padding w3-center w3-margin-top" style="margin-left:18%">
     <div class="w3-third">
         <div class="w3-card w3-container" style="min-height:160px; width: 350px; text-align: left">

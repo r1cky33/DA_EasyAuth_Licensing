@@ -1,3 +1,8 @@
+<?php
+include 'server.php';
+include 'login_script.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <title>EasyAuth licensing</title>
@@ -12,9 +17,9 @@
     <div class ="w3-display-topmiddle w3-xxlarge" style ="padding-top: 3%;">EasyAuth</div>
     <div class ="w3-display-middle w3-medium">
         <form class="w3-container">
-            <input id="email" class="w3-input w3-border w3-section" type="email" placeholder="e-mail">
-            <input id="pw" class="w3-input w3-border w3-section" type="password" placeholder="password">
-            <input id="login" type="button" class="w3-btn w3-blue w3-round-large" value ="Login" style ="margin-left: 33%">
+            <input name = "email_signin" id="email_signin" class="w3-input w3-border w3-section" type="email" placeholder="e-mail">
+            <input name = "pw_signin" id="pw_signin" class="w3-input w3-border w3-section" type="password" placeholder="password">
+            <input name = "login" id="login" type="submit" class="w3-btn w3-blue w3-round-large" value ="Login" style ="margin-left: 33%">
             <p style ="font-size: 15px; color: dimgray">Not registered yet? - <a href="register.php">click here!</a></p>
         </form>
     </div>
