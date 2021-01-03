@@ -2,9 +2,10 @@
 
 include('server.php');
 
-if(isset($_POST["login"])) {
-    $email_signin        = $_POST['email_signin'];
-    $password_signin     = $_POST['pw_signin'];
+if(isset($_GET["loginbtn"])) {
+
+    $email_signin = $_GET['email_signin'];
+    $password_signin = $_GET['pw_signin'];
 
     // clean data
     $user_email = filter_var($email_signin, FILTER_SANITIZE_EMAIL);
@@ -33,7 +34,7 @@ if(isset($_POST["login"])) {
             // Fetch user data and store in php session
             while($row = mysqli_fetch_array($query)) {
                 $id            = $row['id'];
-                $username     = $row['username'];
+                $username      = $row['username'];
                 $email         = $row['email'];
                 $pass_word     = $row['password'];
                 $token         = $row['token'];
@@ -46,12 +47,12 @@ if(isset($_POST["login"])) {
             // Allow only verified user
             if($is_active == '1') {
                 if($email_signin == $email && $password_signin == $password) {
-                    header("location: dashboard.php");
-
                     $_SESSION['id'] = $id;
-                    $_SESSION['firstname'] = $username;
+                    $_SESSION['username'] = $username;
                     $_SESSION['email'] = $email;
                     $_SESSION['token'] = $token;
+
+                    header("location: dashboard.php");
 
                 } else {
                     echo '<script type="text/javascript">alert("something is wrong with email or password")</script>';

@@ -26,7 +26,7 @@ if(isset($_POST["submit_form"])) {
                 $_architecture = '2';
             }
 
-            $sql = "INSERT INTO products (name, description_title, description_text, architecture, state) VALUES ('{$_product_name}','{$_descr_title}','{$_descr_text}', '{$_architecture}', '1');";
+            $sql = "INSERT INTO products (user_id, name, description_title, description_text, architecture, state) VALUES ('{$_SESSION['id']}','{$_product_name}','{$_descr_title}','{$_descr_text}', '{$_architecture}', '1');";
 
             $sqlQuery = mysqli_query($connection, $sql);
 

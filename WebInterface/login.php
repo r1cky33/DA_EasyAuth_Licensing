@@ -16,10 +16,10 @@ include 'login_script.php';
 <div class="w3-display-container w3-display-middle w3-white w3-round-xxlarge" style ="height:350px; width: 600px; border: 2px solid black;">
     <div class ="w3-display-topmiddle w3-xxlarge" style ="padding-top: 3%;">EasyAuth</div>
     <div class ="w3-display-middle w3-medium">
-        <form class="w3-container">
+        <form class="w3-container" action="login_script.php">
             <input name = "email_signin" id="email_signin" class="w3-input w3-border w3-section" type="email" placeholder="e-mail">
             <input name = "pw_signin" id="pw_signin" class="w3-input w3-border w3-section" type="password" placeholder="password">
-            <input name = "login" id="login" type="submit" class="w3-btn w3-blue w3-round-large" value ="Login" style ="margin-left: 33%">
+            <input name = "loginbtn" id="login" type="submit" class="w3-btn w3-blue w3-round-large" value ="Login" style ="margin-left: 33%">
             <p style ="font-size: 15px; color: dimgray">Not registered yet? - <a href="register.php">click here!</a></p>
         </form>
     </div>

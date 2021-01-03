@@ -1,7 +1,10 @@
 <?php
 include('server.php');
-include('product_form.php')
+include('product_form.php');
 
+$query = "SELECT * FROM products WHERE user_id = '{$_SESSION['id']}'";
+$rows = mysqli_query($connection, $query);
+$row = mysqli_fetch_assoc($rows);
 ?>
 
 <!DOCTYPE html>
@@ -91,16 +94,68 @@ include('product_form.php')
         from {opacity: 0}
         to {opacity: 1}
     }
+
+    .fa-sort-down{
+        cursor: pointer;
+        color: #222222;
+        list-style: none;
+        position: relative;
+        display: inline-block;
+    }
+
+    .links{
+        color: whitesmoke;
+        background-color: #222222;
+        display: block;
+        text-decoration: none;
+    }
+
+    .links:hover{
+        color: #222222;
+        background-color: #EE494A;
+        text-decoration: none;
+    }
+
+    .dropdown {
+        position: relative;
+        display: inline-block;
+        padding-top: 20px;
+    }
+
+    .dropdown-content{
+        display: none;
+        position: absolute;
+        z-index: 1;
+    }
+
+    .dropdown-content a{
+        display:block;
+        color: whitesmoke;
+    }
+
+    .show{
+        display:block;
+    }
 </style>
+
 <body>
 
 <!-- Top header-->
 <div style="border-bottom: 1px solid black">
     <header class="w3-container w3-xlarge">
         <p class="w3-right">
-            <i class="fa fa-user-circle" style ="font-size: 35px;"></i>
-            <i>username</i>
-            <i class="fa fa-sort-down"></i>
+                <i class="fa fa-user-circle" style ="font-size: 35px;"></i>
+                <i><?php echo $_SESSION['username'] ?></i>
+                <div class="dropdown w3-right">
+                  <div class="fa fa-sort-down" onclick="openMyDropdown()">
+                       <div class="bar1"></div>
+                       <div class="bar2"></div>
+                  </div>
+                  <div id="myDropdown" class="dropdown-content">
+                      <a class="links">Profile</a>
+                      <a href="logout.php" class="links">Logout</a>
+                   </div>
+            </div>
         </p>
     </header>
 </div>
@@ -118,7 +173,7 @@ include('product_form.php')
        <thead class ="w3-xlarge">
            <tr>
                 <th> </th>
-                <th>Product xyz</th>
+                <th><?php echo $row['description_title'] ?></th>
                 <th> </th>
             </tr>
      </thead>
@@ -152,7 +207,7 @@ include('product_form.php')
     <div id= "myButtons" class="w3-bar-block" style="font-size: x-large;">
         <a id = "dashboard-page" href="dashboard.php" onclick="w3_close()" style="color: whitesmoke; text-align: center;" class="w3-bar-item w3-button w3-hover-red btn">Dashboard</a>
         <div class ="w3-dropdown-hover ">
-            <a id = "products-page" href="products.php" onclick="w3_close()" style="color: whitesmoke; text-align: center;" class="w3-bar-item w3-button w3-hover-red btn">Products</a>
+            <a id = "products-page" href="products.php" onclick="w3_close()" style="color: whitesmoke; text-align: center;" class="w3-bar-item w3-button w3-hover-red btn sideBarMarker">Products</a>
             <div class="w3-dropdown-content w3-bar-block w3-card-4">
                 <a href="xyz" style="background-color: #222222; color: whitesmoke; padding-bottom: 10px; text-align: center;" class ="w3-bar-item w3-button w3-hover-red">product xyz</a>
                 <a href="123" style="background-color: #222222; color: whitesmoke; padding-bottom: 10px; text-align: center;" class ="w3-bar-item w3-button w3-hover-red">product 123</a>
@@ -252,6 +307,29 @@ include('product_form.php')
             modal.style.display = "none";
         }
     }
+</script>
+
+<script>
+
+    function openMyDropdown(){
+        const dropdown = document.getElementById('myDropdown');
+        dropdown.classList.toggle('show');
+    }
+
+    window.onclick = function(event) {
+        // Make sure ".hamburger" or any other class is included so when it is clicked it won't hide the dropdown
+        if (!event.target.matches('.fa-sort-down')) {
+            var dropdowns = document.getElementsByClassName('dropdown-content');
+            var i;
+            for (i = 0; i < dropdowns.length; i++) {
+                var openDropdown = dropdowns[i];
+                if (openDropdown.classList.contains('show')) {
+                    openDropdown.classList.remove('show');
+                }
+            }
+        }
+    }
+
 </script>
 
 </body>
