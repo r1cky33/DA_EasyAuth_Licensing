@@ -1,15 +1,25 @@
 <?php
 include('server.php');
 include('product_form.php');
+include('license_form.php');
+
+if (empty($_SESSION['id'])) {
+    header('location: login.php');
+}
 
 $query = "SELECT * FROM products WHERE user_id = '{$_SESSION['id']}'";
 $rows = mysqli_query($connection, $query);
 $row = mysqli_fetch_assoc($rows);
+
+$license_query = "SELECT * FROM licenses WHERE product_id = '{$row['product_id']}'";
+$license_rows = mysqli_query($connection, $license_query);
+$license_row = mysqli_fetch_assoc($license_rows);
+
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
-<title>EasyAuth licensing</title>
+<title>EasyAuth Licensing</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -20,23 +30,22 @@ $row = mysqli_fetch_assoc($rows);
 <style>
 
     .modal {
-        display: none; /* Hidden by default */
-        position: fixed; /* Stay in place */
-        z-index: 1; /* Sit on top */
+        display: none; 
+        position: fixed; 
+        z-index: 1; 
         left: 0;
         top: 0;
-        width: 100%; /* Full width */
-        height: 100%; /* Full height */
-        overflow: auto; /* Enable scroll if needed */
-        background-color: rgb(0,0,0); /* Fallback color */
-        background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-        -webkit-animation-name: fadeIn; /* Fade in the background */
+        width: 100%; 
+        height: 100%; 
+        overflow: auto; 
+        background-color: rgb(0,0,0);
+        background-color: rgba(0,0,0,0.4); 
+        -webkit-animation-name: fadeIn; 
         -webkit-animation-duration: 0.4s;
         animation-name: fadeIn;
         animation-duration: 0.4s
     }
 
-    /* Modal Content */
     .modal-content {
         position: fixed;
         bottom: 0;
@@ -48,7 +57,6 @@ $row = mysqli_fetch_assoc($rows);
         animation-duration: 0.4s
     }
 
-    /* The Close Button */
     .close {
         color: white;
         float: right;
@@ -74,7 +82,6 @@ $row = mysqli_fetch_assoc($rows);
     }
 
 
-    /* Add Animation */
     @-webkit-keyframes slideIn {
         from {bottom: -300px; opacity: 0}
         to {bottom: 0; opacity: 1}
@@ -125,7 +132,6 @@ $row = mysqli_fetch_assoc($rows);
     .dropdown-content{
         display: none;
         position: absolute;
-        z-index: 1;
     }
 
     .dropdown-content a{
@@ -136,6 +142,13 @@ $row = mysqli_fetch_assoc($rows);
     .show{
         display:block;
     }
+
+    label{
+        background-color: #EE494A;
+        color: #222222;
+        cursor: pointer;
+    }
+
 </style>
 
 <body>
@@ -149,10 +162,8 @@ $row = mysqli_fetch_assoc($rows);
                 <div class="dropdown w3-right">
                   <div class="fa fa-sort-down" onclick="openMyDropdown()">
                        <div class="bar1"></div>
-                       <div class="bar2"></div>
                   </div>
                   <div id="myDropdown" class="dropdown-content">
-                      <a class="links">Profile</a>
                       <a href="logout.php" class="links">Logout</a>
                    </div>
             </div>
@@ -160,58 +171,25 @@ $row = mysqli_fetch_assoc($rows);
     </header>
 </div>
 
-<!-- Main content -->
-<form enctype="multipart/form-data" style ="background-color: #EE494A; margin-left: 80%; margin-top: 3%" class ="w3-large">Upload your Software here</form>
-<div style="margin-left: 80%; margin-top: 6%">
-<form enctype="multipart/form-data" action="uploader.php" method="POST">
-    Choose a file to upload: <input name="uploadedfile" type="file" /><br />
-    <input type="submit" value="Upload File" />
-</form>
-</div>
-<div style="margin-left:18%; margin-top:7%" class="w3-responsive w3-container">
-    <table class="w3-table w3-bordered w3-border w3-centered">
-       <thead class ="w3-xlarge">
-           <tr>
-                <th> </th>
-                <th><?php echo $row['description_title'] ?></th>
-                <th> </th>
-            </tr>
-     </thead>
-     <tr>
-            <th>License</th>
-            <th>HWID</th>
-            <th>Duration</th>
-        </tr>
-        <tr>
-            <td>test</td>
-            <td>test</td>
-            <td>69 days remaining</td>
-        </tr>
-        <tr>
-            <td>another test</td>
-            <td>another test</td>
-            <td>123 days remaining</td>
-        </tr>
-    </table>
-    <div style="text-align: center; margin-top: 1%" class="w3-large">
-        <button style="margin-right: 5%; background-color: #EE494A">Add</button>
-        <button style="margin-right: 5%; background-color: #EE494A"">Modify</button>
-        <button style="margin-right: 5%; background-color: #EE494A"">Delete</button>
-    </div>
-</div>
 <!-- Sidebar/menu -->
-<nav class="w3-sidebar w3-bar-block w3-top w3-large" style="z-index:3;width:18%;font-weight:bold; background-color: #222222;" id="mySidebar"><br>
-    <div style="padding-left: 8px;padding-bottom: 30px; position: center" class="w3-container">
+<nav class="w3-sidebar w3-bar-block w3-top w3-large" style="width:15%;font-weight:bold; background-color: #222222; overflow:visible" id="mySidebar"><br>
+    <div style="padding-bottom: 30px; text-align: center" class="w3-container">
         <img src="moga_logo.png" alt="logo" style="width: 210px;height: 110px;">
     </div>
     <div id= "myButtons" class="w3-bar-block" style="font-size: x-large;">
         <a id = "dashboard-page" href="dashboard.php" onclick="w3_close()" style="color: whitesmoke; text-align: center;" class="w3-bar-item w3-button w3-hover-red btn">Dashboard</a>
-        <div class ="w3-dropdown-hover ">
-            <a id = "products-page" href="products.php" onclick="w3_close()" style="color: whitesmoke; text-align: center;" class="w3-bar-item w3-button w3-hover-red btn sideBarMarker">Products</a>
-            <div class="w3-dropdown-content w3-bar-block w3-card-4">
-                <a href="xyz" style="background-color: #222222; color: whitesmoke; padding-bottom: 10px; text-align: center;" class ="w3-bar-item w3-button w3-hover-red">product xyz</a>
-                <a href="123" style="background-color: #222222; color: whitesmoke; padding-bottom: 10px; text-align: center;" class ="w3-bar-item w3-button w3-hover-red">product 123</a>
-                <button id= "newproduct" name="new_product" >+ new product</button>
+        <div class ="w3-dropdown-hover">
+            <a id = "products-page" style="color: whitesmoke; text-align: center;" class="w3-bar-item w3-button w3-hover-red btn sideBarMarker">Products</a>
+            <div id="myProductList" method="POST" class="w3-dropdown-content w3-bar-block w3-card-4" style="position: absolut; left:100%; top:0;">
+                <?php 
+                    foreach($rows as $unique_product){ ?>
+                        <button style="background-color: #222222; color: whitesmoke; padding-bottom: 10px; text-align: center; width: 400px;" 
+                        class ="w3-bar-item w3-button w3-hover-red table_updater" onClick="bitteGehJz()" id= "list_product" name="list_product" type="submit" 
+                        value = "<?php echo $unique_product['description_title'] ?>"><?php echo $unique_product['description_title'] 
+                        ?></button>
+                <?php   }
+                ?>
+                <button class="w3-bar-item w3-button w3-hover-red" style="color: whitesmoke; text-align: center; background-color: #222222;" id= "new_product" name="new_product" >-- Add New Product --</button>
             </div>
         </div>
         <a id = "news-page" href="news.php" onclick="w3_close()" style="color: whitesmoke; text-align: center;" class="w3-bar-item w3-button w3-hover-red btn">News</a>
@@ -220,40 +198,102 @@ $row = mysqli_fetch_assoc($rows);
     <a href="javascript:void(0)" onclick="w3_close()" class="w3-button w3-hide-large w3-display-bottom" style="100%;font-size:22px;">Close Menu</a>
 </nav>
 
-<!-- Top menu on small screens -->
 <header class="w3-container w3-top w3-hide-large w3-red w3-xlarge w3-padding">
     <a href="javascript:void(0)" class="w3-button w3-red w3-margin-right" onclick="w3_open()">☰</a>
     <span>EasyAuth</span>
 </header>
 
-<!-- Overlay effect when opening sidebar on small screens -->
 <div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
 
 <div class="w3-main" style="margin-left:340px;margin-right:40px"></div>
 
-<div id="myModal" class="modal">
-
-    <!-- Modal content -->
-    <div class="modal-content" style="margin-left: 18%">
+<!-- Product-Modal -->
+<div id="myProductModal" class="modal">
+    <div class="modal-content" style="margin-left: 15%">
         <div class="modal-header">
-            <span class="close">&times;</span>
-            <h1>add new product</h1>
+            <span class="product_modal_close w3-xxlarge" style="cursor: pointer">&times;</span>
+            <h1>Add new Product</h1>
         </div>
         <form class="modal-body"  method="post" action="product_form.php">
-            <input style="padding: 3px; margin: 5px;" id="product_name" name="product_name" placeholder="product name"><br>
-            <input style="padding: 3px; margin: 5px;" id="description_title" name="description_title" placeholder="description title"><br>
-            <textarea style="padding: 3px; margin: 5px;" id="description_text" name="description_text" placeholder="description text" cols="24"></textarea><br>
+            <input style="padding: 3px; margin: 5px;" id="product_name" name="product_name" placeholder="Product Name"><br>
+            <input style="padding: 3px; margin: 5px;" id="description_title" name="description_title" placeholder="Description Title"><br>
+            <textarea style="padding: 3px; margin: 5px;" id="description_text" name="description_text" placeholder="Description Text" cols="24"></textarea><br>
             <select style="padding: 3px; margin: 5px;" id="architecture" name="architecture">
                 <option value="nativex64">Native x64 (C/C++)</option>
                 <option value="clr">CLR (C#)</option>
             </select><br>
-            <button style="padding: 3px; margin: 5px;" id="submit_form" name="submit_form" type="submit">Add Product</button>
+            <button style="padding: 3px; margin: 5px;" id="product_modal_submit" name="product_modal_submit" type="submit">Add Product</button>
         </form>
     </div>
-
 </div>
 
-    <script>
+<!-- License-Modal -->
+<div id="myLicenseModal" class="modal">
+    <div class="modal-content" style="margin-left: 15%">
+        <div class="modal-header">
+            <span class="license_modal_close w3-xxlarge" style="cursor: pointer">&times;</span>
+            <h1>Add new License</h1>
+        </div>
+        <form class="modal-body"  method="post" action="license_form.php">
+            <p class="w3-xlarge" style="padding-left: 3px; margin: 5px;" id="activation_date" name="activation_date"> Activation Date: <script> var my_date = new Date(); my_date.toISOString().split('T')[0]; document.write(my_date); </script></p><br>
+            <p style="padding: 3px; margin: 5px;">End of license:</p><br>
+            <input style="padding: 3px; margin: 5px;" id="license_duration" name="license_duration" placeholder="YYYY-MM-DD"><br>
+            <button style="padding: 3px; margin: 5px;" id="license_modal_submit" name="license_modal_submit" type="submit">Add License</button>
+        </form>
+    </div>
+</div>
+<!-- Main content -->
+    <!-- File Upload -->
+<form enctype="multipart/form-data" action="uploader.php" method="POST" 
+    style ="margin-left: 80%; margin-top: 3%;"
+    class ="w3-large"><input id="my_uploadButton" name="uploadedfile" type="file" hidden/>
+    <label class="w3-button w3-hover-red" style = "background-color: #222222; color:whitesmoke;" for="my_uploadButton">Select your Software here</label><br>
+    <input class ="w3-large w3-button w3-hover-red" style="background-color: #EE494A; margin-left:18%;" type="submit" value="Upload File"/>
+</form>
+
+    <!-- Table -->
+<div style="margin-left:18%; margin-top:7%" class="w3-responsive w3-container w3-center">
+<?php 
+        if(mysqli_num_rows($license_rows) < 1){ ?>
+                <div>
+                        <?php echo $row['description_title'] ?>
+                        <h1>No License(s) found for this Product!</h1>
+                    </div>
+                   
+<?php  } 
+        
+        else{ ?>
+        <table id="license_table" class="w3-table w3-bordered w3-border w3-centered">
+            <thead class = "w3-xlarge">
+                <tr>
+                     <th> </th>
+                     <th><?php echo $row['description_title']?></th>
+                     <th> </th>
+                 </tr>
+            </thead>
+            <tr class = "w3-large">
+                 <th>License</th>
+                 <th>HWID</th>
+                 <th>Duration</th>
+            </tr>
+            <tr>
+            <?php foreach($license_rows as $unique_product) {?>
+                <td><?php echo $unique_product['license']?></td>
+                <td><?php echo $unique_product['hwid']?></td>
+                <td><?php echo $unique_product['duration']?></td>
+            </tr>
+            <?php }?>
+         </table>
+         <div style="text-align: center; margin-top: 1%" class="w3-large">
+             <button id ="newLicenseButton" class="w3-button w3-hover-red" onclick="licenseModalFunc()" style="margin-right: 5%; background-color: #EE494A; border: 1px solid black; width:90px; text-align: center;">Add</button>
+             <button class="w3-button w3-hover-red" style="margin-right: 5%; background-color: #EE494A; border: 1px solid black; width:90px; text-align: center;">Modify</button>
+             <button class="w3-button w3-hover-red" style="margin-right: 5%; background-color: #EE494A; border: 1px solid black; width:90px; text-align: center;">Delete</button>
+         </div>
+ <?php   }
+
+?>
+</div>
+<script>
         function w3_open() {
             document.getElementById("mySidebar").style.display = "block";
             document.getElementById("myOverlay").style.display = "block";
@@ -271,42 +311,104 @@ $row = mysqli_fetch_assoc($rows);
             captionText.innerHTML = element.alt;
         }
 
-    </script>
+</script>
 
+<!-- Table-Update script -->
+<!--
 <script>
-    // Get the modal
-    var modal = document.getElementById("myModal");
+        $('#list_product').on('click', function bitteGehJz() {
+                var currentProduct = $(this).val();
+                $.ajax({
+                url: 'update_license_table.php',               
+                method: "GET",
+                dataType: 'json',
+                {sessionCurrentProduct:currentProduct},
+                success: function(response) {
+                    $('#license_table').html(response);
+                }
+            });       
+        });
+</script>
+-->
+<script>
+        $(".table_updater").click(function bitteGehJz(){
+            var currentProduct = $(this).val();
+                $.ajax({
+                    type: "POST",
+                    url: "update_license_table.php",
+                    dataType: 'text',
+                    data:{
+                        sessionCurrentProduct: JSON.stringify(currentProduct)
+                    },      
+                    success: function(data){
+                        $("#license_table").html(data);
+                    }
+                }); 
+        });  
+        /*var currentProduct = $(this).val();
+                $.post("update_license_table.php",{sessionCurrentProduct: currentProduct},function(result){            
+                    $('#license_table').text(result);
+                }); */
+                
+                /*$('#list_product').on('click', function bitteGehJz(){
+                        var currentProduct = $(this).val();
+                        var url = "update_license_table.php";
+                        $.post(url,{sessionCurrentProduct:currentProduct},function(data){            
+                                $('#license_table').html(data);
+                        });*/    
+</script>
 
-    // Get submit button
-    var finished = document.getElementById("submit_form")
+<!-- Product-Modal script -->
+<script>
+    var productModal = document.getElementById("myProductModal");
 
-    // Get the button that opens the modal
-    var btn = document.getElementById("newproduct");
+    var productFinished = document.getElementById("product_modal_submit")
 
-    // Get the <span> element that closes the modal
-    var span = document.getElementsByClassName("close")[0];
+    var productBtn = document.getElementById("new_product");
 
-    // When the user clicks the button, open the modal
-    btn.onclick = function() {
-        modal.style.display = "block";
+    var productSpan = document.getElementsByClassName("product_modal_close")[0];
+
+    productBtn.onclick = function() {
+        productModal.style.display = "block";
     }
 
-    // When the user clicks on <span> (x), close the modal
-    span.onclick = function() {
-        modal.style.display = "none";
+    productSpan.onclick = function() {
+        productModal.style.display = "none";
     }
 
-    // Close modal when finished
-    finished.onclick = function() {
-        modal.style.display = "none;"
+    productFinished.onclick = function() {
+        productModal.style.display = "none";
     }
 
-    // When the user clicks anywhere outside of the modal, close it
     window.onclick = function(event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
+        if (event.target == productModal) {
+            productModal.style.display = "none";
         }
     }
+</script>
+
+ <!-- License-Modal script -->
+ <script>
+    function licenseModalFunc(){
+        var licenseModal = document.getElementById("myLicenseModal");
+        var licenseFinished = document.getElementById("license_modal_submit")
+        var licenseBtn = document.getElementById("newLicenseButton");
+        var licenseSpan = document.getElementsByClassName("license_modal_close")[0];
+        licenseBtn.onclick = function() {
+            licenseModal.style.display = "block";
+        }
+        licenseSpan.onclick = function() {
+            licenseModal.style.display = "none";
+        }
+        licenseFinished.onclick = function() {
+            licenseModal.style.display = "none";
+        }
+        window.onclick = function(event) {
+            if (event.target == licenseModal) {
+                licenseModal.style.display = "none";
+                }
+            }
+    };
 </script>
 
 <script>
@@ -317,7 +419,6 @@ $row = mysqli_fetch_assoc($rows);
     }
 
     window.onclick = function(event) {
-        // Make sure ".hamburger" or any other class is included so when it is clicked it won't hide the dropdown
         if (!event.target.matches('.fa-sort-down')) {
             var dropdowns = document.getElementsByClassName('dropdown-content');
             var i;

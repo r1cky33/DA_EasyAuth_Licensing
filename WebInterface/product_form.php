@@ -3,10 +3,10 @@ include('server.php');
 
 $_product_name = $_descr_title = $_descr_text = $_architecture = "";
 
-if(isset($_POST["submit_form"])) {
-    $product_name     = $_POST['product_name'];
-    $descr_title         = $_POST['description_title'];
-    $descr_text     = $_POST['description_text'];
+if(isset($_POST["product_modal_submit"])) {
+    $product_name = $_POST['product_name'];
+    $descr_title = $_POST['description_title'];
+    $descr_text = $_POST['description_text'];
     $architecture = $_POST['architecture'];
 
     // PHP validation

@@ -61,7 +61,7 @@ if(isset($_POST["submit"])) {
 
                 // Query
 
-                $sql = "INSERT INTO users (username, email, password, token, is_active) VALUES ('{$_username}','{$_email}','{$password_hash}', '{$token}', '{0}');";
+                $sql = "INSERT INTO users (username, email, password, token, is_active) VALUES ('{$_username}','{$_email}','{$password_hash}', '{$token}', '0');";
 
                 // Create mysql query
                 $sqlQuery = mysqli_query($connection, $sql);
@@ -73,7 +73,7 @@ if(isset($_POST["submit"])) {
                 // Send verification email
                 else {
                     $msg = 'Click on the activation link to verify your email. <br><br>
-                          <a href="http://localhost:63342/DA/user_activation.php?token='.$token.'"> Click here to verify email</a>
+                          <a href="http://localhost:8000/user_activation.php?token='.$token.'"> Click here to verify email</a>
                         ';
 
                     // Create the Transport

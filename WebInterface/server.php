@@ -8,7 +8,7 @@ if(!isset($_SESSION)) {
     session_start();
 }
 
-$hostname = "localhost";
+$hostname = "db";
 $username = "root";
 $password = "";
 $dbname = "ezauth";

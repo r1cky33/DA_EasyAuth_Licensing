@@ -14,8 +14,8 @@ include 'login_script.php';
 <link rel="stylesheet" href="style.css">
 <body style ="background-color: #EE494A">
 <div class="w3-display-container w3-display-middle w3-white w3-round-xxlarge" style ="height:350px; width: 600px; border: 2px solid black;">
-    <div class ="w3-display-topmiddle w3-xxlarge" style ="padding-top: 3%;">EasyAuth</div>
-    <div class ="w3-display-middle w3-medium">
+    <img class ="w3-display-topmiddle" src="moga_logo.png" alt="logo" style="width: 210px;height: 130px; padding-top: 3%">
+    <div class ="w3-display-bottommiddle w3-medium">
         <form class="w3-container" action="login_script.php">
             <input name = "email_signin" id="email_signin" class="w3-input w3-border w3-section" type="email" placeholder="e-mail">
             <input name = "pw_signin" id="pw_signin" class="w3-input w3-border w3-section" type="password" placeholder="password">
