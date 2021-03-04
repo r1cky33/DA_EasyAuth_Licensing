@@ -4,18 +4,16 @@ body{
 
 i {
     padding-left: 10px;
-}
-
-
-button:hover {
-    border-left: 5px solid #EE494A;
-    color: #222222;
-}
-
-.btn{
-
+    font-family: "Poppins", sans-serif;
 }
 
 .sideBarMarker{
     border-left: 7px solid #EE494A !important;
 }
+
+header{
+    font-family: "Poppins", sans-serif;
+}
+
+
+

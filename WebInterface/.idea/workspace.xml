@@ -1,69 +1,77 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="c989b58c-cfc5-41fc-adc8-1149a3e5c0ce" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dashboard.php" beforeDir="false" afterPath="$PROJECT_DIR$/dashboard.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/style.css" afterDir="false" />
-    </list>
+    <list default="true" id="b9d51339-3b12-4f97-a727-6ee551ebe3da" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ComposerSettings">
+  <component name="ComposerSettings" doNotAsk="true" synchronizationState="DONT_SYNCHRONIZE">
+    <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
     <execution />
   </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="HTML File" />
-        <option value="CSS File" />
-      </list>
-    </option>
+  <component name="JsFlowSettings">
+    <service-enabled>true</service-enabled>
+    <exe-path />
+    <other-services-enabled>true</other-services-enabled>
+    <auto-save>true</auto-save>
   </component>
-  <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP xampp">
+    <include_path>
+      <path value="$PROJECT_DIR$/vendor/composer" />
+      <path value="$PROJECT_DIR$/vendor/egulias/email-validator" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-iconv" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-intl-idn" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/lexer" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-intl-normalizer" />
+      <path value="$PROJECT_DIR$/vendor/swiftmailer/swiftmailer" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-mbstring" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php72" />
+    </include_path>
   </component>
-  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP xampp" />
-  <component name="ProjectId" id="1l4CGcWz6qubr9cpFYxZ6qR0Fkv" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
-    <ConfirmationsSetting value="1" id="Add" />
-  </component>
+  <component name="ProjectId" id="1lU0W55pKSUP5eUJS4gQLtchWrA" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
-    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="DatabaseDriversLRU" value="mysql" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="list.type.of.created.stylesheet" value="CSS" />
-    <property name="node.js.detected.package.eslint" value="true" />
-    <property name="node.js.detected.package.standard" value="true" />
-    <property name="node.js.path.for.package.eslint" value="project" />
-    <property name="node.js.path.for.package.standard" value="project" />
-    <property name="node.js.selected.package.eslint" value="(autodetect)" />
-    <property name="node.js.selected.package.standard" value="" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="settings.editor.selected.configurable" value="reference.webide.settings.project.settings.php" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="project.propDebugger" />
     <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="composer" />
+      <command value="php -r &quot;copy('https://getcomposer.org/installer', 'composer-setup.php');&quot; php -r &quot;if (hash_file('sha384', 'composer-setup.php') === '756890a4488ce9024fc62c56153228907f1545c228516cbf63f885e036d37e9a59d27d63f46af1d4d07ee0f76181c7d3') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;&quot; php composer-setup.php php -r &quot;unlink('composer-setup.php');&quot;" />
+    </option>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="c989b58c-cfc5-41fc-adc8-1149a3e5c0ce" name="Default Changelist" comment="" />
-      <created>1606846885676</created>
+      <changelist id="b9d51339-3b12-4f97-a727-6ee551ebe3da" name="Default Changelist" comment="" />
+      <created>1607636390453</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1606846885676</updated>
-      <workItem from="1606846887361" duration="2667000" />
-      <workItem from="1607082689556" duration="764000" />
-      <workItem from="1607084217607" duration="6117000" />
-      <workItem from="1607098526262" duration="6680000" />
-      <workItem from="1607119255685" duration="3000000" />
-      <workItem from="1607122353166" duration="372000" />
+      <updated>1607636390453</updated>
+      <workItem from="1607636391498" duration="756000" />
+      <workItem from="1608762926539" duration="6531000" />
+      <workItem from="1609165696844" duration="1151000" />
+      <workItem from="1609181337981" duration="12025000" />
+      <workItem from="1609609413842" duration="1074000" />
+      <workItem from="1609610512546" duration="141000" />
+      <workItem from="1609634197561" duration="5867000" />
+      <workItem from="1609677697594" duration="8390000" />
+      <workItem from="1609702797944" duration="11218000" />
     </task>
     <servers />
   </component>
@@ -71,33 +79,37 @@
     <option name="version" value="3" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="1300" y="355" key="#CLI_Interpreters" timestamp="1607084377278">
+    <state x="574" y="343" key="#PHP" timestamp="1607636557194">
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
-    <state x="1300" y="355" key="#CLI_Interpreters/0.0.3440.1400/3440.290.1280.1024@0.0.3440.1400" timestamp="1607084377278" />
-    <state x="1497" y="438" key="#Docker" timestamp="1606849463087">
+    <state x="574" y="343" key="#PHP/0.0.3440.1400/3440.290.1280.1024@0.0.3440.1400" timestamp="1607636557194" />
+    <state x="459" y="358" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1609166403536">
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
-    <state x="1497" y="438" key="#Docker/0.0.3440.1400/3440.290.1280.1024@0.0.3440.1400" timestamp="1606849463087" />
-    <state x="1427" y="343" key="#PHP" timestamp="1607084377395">
+    <state x="459" y="358" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.3440.1400/3440.290.1280.1024@0.0.3440.1400" timestamp="1609166403536" />
+    <state x="590" y="450" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1609190755422">
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
-    <state x="1427" y="343" key="#PHP/0.0.3440.1400/3440.290.1280.1024@0.0.3440.1400" timestamp="1607084377395" />
-    <state x="1174" y="355" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1606847012679">
+    <state x="590" y="450" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.3440.1400/3440.290.1280.1024@0.0.3440.1400" timestamp="1609190755422" />
+    <state x="683" y="426" key="NewPhpClassDialog" timestamp="1608765979494">
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
-    <state x="1174" y="355" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.3440.1400/3440.290.1280.1024@0.0.3440.1400" timestamp="1606847012679" />
-    <state x="1500" y="455" key="FileChooserDialogImpl" timestamp="1607083063223">
+    <state x="683" y="426" key="NewPhpClassDialog/0.0.3440.1400/3440.290.1280.1024@0.0.3440.1400" timestamp="1608765979494" />
+    <state x="694" y="627" key="NewPhpFileDialog" timestamp="1609708688181">
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
-    <state x="1500" y="455" key="FileChooserDialogImpl/0.0.3440.1400/3440.290.1280.1024@0.0.3440.1400" timestamp="1607083063223" />
-    <state x="694" y="627" key="NewPhpFileDialog" timestamp="1607121718064">
+    <state x="694" y="627" key="NewPhpFileDialog/0.0.3440.1400/3440.290.1280.1024@0.0.3440.1400" timestamp="1609708688181" />
+    <state x="361" y="348" key="SettingsEditor" timestamp="1609191667654">
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
-    <state x="694" y="627" key="NewPhpFileDialog/0.0.3440.1400/3440.290.1280.1024@0.0.3440.1400" timestamp="1607121718064" />
-    <state x="1221" y="345" key="SettingsEditor" timestamp="1607084389896">
+    <state x="361" y="348" key="SettingsEditor/0.0.3440.1400/3440.290.1280.1024@0.0.3440.1400" timestamp="1609191667654" />
+    <state x="516" y="334" width="672" height="677" key="run.anything.popup" timestamp="1608765030924">
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
-    <state x="1221" y="345" key="SettingsEditor/0.0.3440.1400/3440.290.1280.1024@0.0.3440.1400" timestamp="1607084389896" />
+    <state x="516" y="334" width="672" height="677" key="run.anything.popup/0.0.3440.1400/3440.290.1280.1024@0.0.3440.1400" timestamp="1608765030924" />
+    <state x="523" y="320" width="672" height="678" key="search.everywhere.popup" timestamp="1609189749203">
+      <screen x="0" y="0" width="3440" height="1400" />
+    </state>
+    <state x="523" y="320" width="672" height="678" key="search.everywhere.popup/0.0.3440.1400/3440.290.1280.1024@0.0.3440.1400" timestamp="1609189749203" />
   </component>
 </project>
