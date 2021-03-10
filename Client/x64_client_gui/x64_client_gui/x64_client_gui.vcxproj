@@ -123,6 +123,7 @@
       </SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>false</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -153,6 +154,7 @@
   <ItemGroup>
     <ClCompile Include="antidbg.cpp" />
     <ClCompile Include="auth.cpp" />
+    <ClCompile Include="cache.cpp" />
     <ClCompile Include="crypt.cpp" />
     <ClCompile Include="dotnet_ldr.cpp" />
     <ClCompile Include="globals.cpp" />
@@ -167,10 +169,12 @@
     <ClCompile Include="loader.cpp" />
     <ClCompile Include="native_ldr.cpp" />
     <ClCompile Include="source.cpp" />
+    <ClCompile Include="utils.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="antidbg.h" />
     <ClInclude Include="auth.h" />
+    <ClInclude Include="cache.h" />
     <ClInclude Include="crypt.h" />
     <ClInclude Include="dotnet_ldr.h" />
     <ClInclude Include="globals.h" />
@@ -186,6 +190,7 @@
     <ClInclude Include="loader.h" />
     <ClInclude Include="native_ldr.h" />
     <ClInclude Include="stdafx.h" />
+    <ClInclude Include="utils.h" />
     <ClInclude Include="xor.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

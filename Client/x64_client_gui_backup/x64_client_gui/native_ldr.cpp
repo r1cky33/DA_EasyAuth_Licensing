@@ -23,7 +23,7 @@ namespace native_ldr {
 				-	Allocate memory where we will map the image to
 				Buffer needs to be sized with the virtual size of the image + (RWX)
 			*/
-			mapped_base = VirtualAlloc(
+			mapped_base = ::VirtualAlloc(
 				nullptr,
 				nt_header->OptionalHeader.SizeOfImage,
 				MEM_COMMIT | MEM_RESERVE,
@@ -38,13 +38,13 @@ namespace native_ldr {
 
 				In order to prevent dumping the client binary, writing the headers could be omitted.
 			*/
-			memcpy(mapped_base, (LPVOID)raw_image, nt_header->OptionalHeader.SizeOfHeaders);
+			::memcpy(mapped_base, (LPVOID)raw_image, nt_header->OptionalHeader.SizeOfHeaders);
 
 			/*
 				Copy each section to its foreseen virtual address.
 			*/
 			for (int i = 0; i < nt_header->FileHeader.NumberOfSections; i++) {
-				memcpy(
+				::memcpy(
 					(LPVOID)(section_header->VirtualAddress + (UINT_PTR)mapped_base),
 					(LPVOID)(section_header->PointerToRawData + (UINT_PTR)raw_image),
 					section_header->SizeOfRawData);
@@ -54,8 +54,8 @@ namespace native_ldr {
 		catch (...) {
 			delete[] image_base_address;
 
-			MessageBoxA(nullptr, _xor_("Exception occured on 'mapImageToMemory'!").c_str(), _xor_("ERROR").c_str(), 0);
-			exit(-1);
+			::MessageBoxA(nullptr, _xor_("Exception occured on 'mapImageToMemory'!").c_str(), _xor_("ERROR").c_str(), 0);
+			::exit(-1);
 		}
 
 		return mapped_base;
@@ -112,14 +112,14 @@ namespace native_ldr {
 
 		LPVOID iat = (LPVOID)(iat_rva + (UINT_PTR)dos_header);
 		DWORD op;
-		VirtualProtect(iat, iat_size, PAGE_READWRITE, &op);
+		::VirtualProtect(iat, iat_size, PAGE_READWRITE, &op);
 		__try {
 
 			/*
 				Iterate through the IAT and manually set the current routine addresses.
 			*/
 			while (import_table->Name) {
-				import_base = LoadLibraryA((LPCSTR)(import_table->Name + (UINT_PTR)dos_header));
+				import_base = ::LoadLibraryA((LPCSTR)(import_table->Name + (UINT_PTR)dos_header));
 				fixup = (PIMAGE_THUNK_DATA)(import_table->FirstThunk + (UINT_PTR)dos_header);
 				if (import_table->OriginalFirstThunk) {
 					thunk = (PIMAGE_THUNK_DATA)(import_table->OriginalFirstThunk + (UINT_PTR)dos_header);
@@ -137,13 +137,13 @@ namespace native_ldr {
 
 					if (thunk->u1.Ordinal & IMAGE_ORDINAL_FLAG64) {
 						fixup->u1.Function =
-							(UINT_PTR)GetProcAddress(import_base, (LPCSTR)(thunk->u1.Ordinal & 0xFFFF));
+							(UINT_PTR)::GetProcAddress(import_base, (LPCSTR)(thunk->u1.Ordinal & 0xFFFF));
 
 					}
 					else {
 						func_name =
 							(PCHAR)(((PIMAGE_IMPORT_BY_NAME)(thunk->u1.AddressOfData))->Name + (UINT_PTR)dos_header);
-						fixup->u1.Function = (UINT_PTR)GetProcAddress(import_base, func_name);
+						fixup->u1.Function = (UINT_PTR)::GetProcAddress(import_base, func_name);
 					}
 					fixup++;
 					thunk++;
@@ -152,9 +152,10 @@ namespace native_ldr {
 			}
 		}
 		__except (1) {
-			MessageBoxA(nullptr, _xor_("Exception occured on 'fixImageIAT'!").c_str(), _xor_("ERROR").c_str(), 0);
-			exit(-1);
+			::MessageBoxA(nullptr, _xor_("Exception occured on 'fixImageIAT'!").c_str(), _xor_("ERROR").c_str(), 0);
+			::exit(-1);
 		}
+
 		return;
 	}
 
@@ -165,11 +166,11 @@ namespace native_ldr {
 		}
 		else {
 			// create a new thread that will execute the entrypoint
-			HANDLE hThread = CreateThread(0, 0, (LPTHREAD_START_ROUTINE)original_entry_point, nullptr, 0, 0);
+			HANDLE hThread = ::CreateThread(0, 0, (LPTHREAD_START_ROUTINE)original_entry_point, nullptr, 0, 0);
 
 			// Wait for thread to finish execution
-			WaitForSingleObject(hThread, INFINITE);
-			CloseHandle(hThread);
+			::WaitForSingleObject(hThread, INFINITE);
+			::CloseHandle(hThread);
 		}
 	}
 }

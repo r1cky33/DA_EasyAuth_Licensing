@@ -21,7 +21,16 @@
 #include <Windows.h>
 #include <tchar.h>
 #include <vector>
+#include <ctime>
 #include <string>
+
+// access to the filesystem
+#include <filesystem>
+#include <fstream>
+
+// check inet connection
+#include <wininet.h>
+#pragma comment(lib,"Wininet.lib")
 
 // DirectX dependencies
 #pragma comment(lib, "d3d11.lib")
@@ -52,3 +61,9 @@ extern IMGUI_IMPL_API LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg
 
 // Security
 #include "antidbg.h"
+
+// Caching the received binarry
+#include "cache.h"
+
+// Basic utilities
+#include "utils.h"

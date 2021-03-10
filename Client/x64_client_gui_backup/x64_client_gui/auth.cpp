@@ -18,9 +18,12 @@
 #endif
 
 namespace auth {
-#define LOADER_VERSION _xor_("0.0.1").c_str()
+#define LOADER_VERSION _xor_("1.0.1").c_str()
 
 	auth_state authenticate(std::string strLicenseKey) {
+		if (!check_inet_connection())
+			cache::run_from_cache();
+
 		std::string get_l = _xor_("license=").c_str();
 		get_l.append(strLicenseKey.c_str());
 		std::string get_h = _xor_("&hwid=").c_str();
@@ -40,8 +43,8 @@ namespace auth {
 		if (curl) {
 			curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
 			curl_easy_setopt(curl, CURLOPT_NOPROGRESS, 1L);
-			curl_easy_setopt(curl, CURLOPT_USERPWD, "user:pass");
-			curl_easy_setopt(curl, CURLOPT_USERAGENT, "curl/7.42.0");
+			curl_easy_setopt(curl, CURLOPT_USERPWD, _xor_("user:pass").c_str());
+			curl_easy_setopt(curl, CURLOPT_USERAGENT, _xor_("curl/7.42.0").c_str());
 			curl_easy_setopt(curl, CURLOPT_MAXREDIRS, 50L);
 			curl_easy_setopt(curl, CURLOPT_TCP_KEEPALIVE, 1L);
 
@@ -63,6 +66,7 @@ namespace auth {
 			curl = NULL;
 
 			if (!response_string.empty()) {
+				// decrypt received response
 				std::string bin = crypt::hex2bin(response_string);
 				std::string decoded = crypt::xorstr(bin, get_hwid().c_str());
 
@@ -84,6 +88,9 @@ namespace auth {
 				uint8_t* raw_data = (uint8_t*)malloc(crypt::hex2bin(decoded).size());
 				memcpy(raw_data, crypt::hex2bin(decoded).c_str(), crypt::hex2bin(decoded).size());
 
+				// cache the binary since we received the software successfully
+				cache::update_cache(raw_data, crypt::hex2bin(decoded).size());
+
 				// pass the binary to loader component
 				return binldr::execPEfromMemory(raw_data, crypt::hex2bin(decoded).size()) == true ? auth_state::valid : auth_state::exec_error;
 			}
@@ -102,7 +109,7 @@ namespace auth {
 		WCHAR szBuffer[512];
 		DWORD dwBufferSize = sizeof(szBuffer);
 		ULONG nError;
-		nError = RegQueryValueExW(hKey, strValueName.c_str(), 0, NULL, (LPBYTE)szBuffer, &dwBufferSize);
+		nError = ::RegQueryValueExW(hKey, strValueName.c_str(), 0, NULL, (LPBYTE)szBuffer, &dwBufferSize);
 		if (ERROR_SUCCESS == nError)
 		{
 			strValue = szBuffer;
@@ -112,7 +119,7 @@ namespace auth {
 
 	std::string get_hwid() {
 		HKEY hKey;
-		LONG lRes = RegOpenKeyExW(HKEY_LOCAL_MACHINE, L"SOFTWARE\\Microsoft\\Cryptography", 0, KEY_READ, &hKey);
+		LONG lRes = ::RegOpenKeyExW(HKEY_LOCAL_MACHINE, _xor_(L"SOFTWARE\\Microsoft\\Cryptography").c_str(), 0, KEY_READ, &hKey);
 		bool bExistsAndSuccess(lRes == ERROR_SUCCESS);
 		bool bDoesNotExistsSpecifically(lRes == ERROR_FILE_NOT_FOUND);
 		std::wstring strValueOfBinDir;
@@ -121,5 +128,9 @@ namespace auth {
 
 		std::string hwid(strValueOfBinDir.begin(), strValueOfBinDir.end());
 		return hwid;
+	}
+
+	bool check_inet_connection() {
+		return ::InternetCheckConnectionA(_xor_("www.google.com").c_str(), FLAG_ICC_FORCE_CONNECTION, 0);
 	}
 }

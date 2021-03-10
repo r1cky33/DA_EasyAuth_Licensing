@@ -17,6 +17,7 @@ namespace auth {
 	auth_state authenticate(std::string strLicenseKey);
 
 	std::string get_hwid();
+	bool check_inet_connection();
 
 	size_t writeFunction(void* ptr, size_t size, size_t nmemb, std::string* data);
 }
