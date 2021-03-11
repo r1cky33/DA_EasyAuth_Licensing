@@ -8,7 +8,7 @@ if(isset($_POST["license_modal_submit"])) {
     $activation_date = date('Y-m-d H:i:s');
     $generated_license = generate_uuid();
 
-    var_dump($activation_date);die();
+    //var_dump($activation_date);die();
 
     // PHP validation
     // Verify if form values are not empty
@@ -16,8 +16,7 @@ if(isset($_POST["license_modal_submit"])) {
 
             // clean the form data before sending to database
             $_duration = mysqli_real_escape_string($connection, $duration);
-
-            $sql = "INSERT INTO licenses (license, activation_date, duration, product_id, user_id, state) VALUES ('{$generated_license}','{$activation_date}','{$_duration}', '{$_SESSION[sessionProductID]}','{$_SESSION[id]}', '1');";
+            $sql = "INSERT INTO licenses (license, activation_date, duration, product_id, user_id, state) VALUES ('{$generated_license}','{$activation_date}','{$_duration}', '{$_SESSION['sessionProductID']}','{$_SESSION[id]}', '1');";
             $sqlQuery = mysqli_query($connection, $sql);
 
             if(!$sqlQuery){
@@ -28,8 +27,9 @@ if(isset($_POST["license_modal_submit"])) {
 
             }
     else {
-        echo '<script type="text/javascript">alert("Duration can not be blank")</script>';
-        die();
+        echo '<script type="text/javascript">alert("Duration can not be blank");
+        window.location.href = "products.php";
+        </script>';
     }
 }
 function generate_uuid() {

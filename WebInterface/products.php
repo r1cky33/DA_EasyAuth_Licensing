@@ -15,6 +15,9 @@ $license_query = "SELECT * FROM licenses WHERE product_id = '{$row['product_id']
 $license_rows = mysqli_query($connection, $license_query);
 $license_row = mysqli_fetch_assoc($license_rows);
 
+$delete_license_query = "SELECT license FROM licenses WHERE product_id = '{$_SESSION['sessionProductID']}'";
+$delete_license_rows = mysqli_query($connection, $delete_license_query);
+
 ?>
 
 <!DOCTYPE html>
@@ -185,8 +188,7 @@ $license_row = mysqli_fetch_assoc($license_rows);
                     foreach($rows as $unique_product){ ?>
                         <button style="background-color: #222222; color: whitesmoke; padding-bottom: 10px; text-align: center; width: 400px;" 
                         class ="w3-bar-item w3-button w3-hover-red table_updater" onClick="bitteGehJz()" id= "list_product" name="list_product" type="submit" 
-                        value = "<?php echo $unique_product['description_title'] ?>"><?php echo $unique_product['description_title'] 
-                        ?></button>
+                        value = "<?php echo $unique_product['name'] ?>"><?php echo $unique_product['name'] ?></button>
                 <?php   }
                 ?>
                 <button class="w3-bar-item w3-button w3-hover-red" style="color: whitesmoke; text-align: center; background-color: #222222;" id= "new_product" name="new_product" >-- Add New Product --</button>
@@ -214,7 +216,7 @@ $license_row = mysqli_fetch_assoc($license_rows);
             <span class="product_modal_close w3-xxlarge" style="cursor: pointer">&times;</span>
             <h1>Add new Product</h1>
         </div>
-        <form class="modal-body"  method="post" action="product_form.php">
+        <form class="modal-body" method="post" action="product_form.php">
             <input style="padding: 3px; margin: 5px;" id="product_name" name="product_name" placeholder="Product Name"><br>
             <input style="padding: 3px; margin: 5px;" id="description_title" name="description_title" placeholder="Description Title"><br>
             <textarea style="padding: 3px; margin: 5px;" id="description_text" name="description_text" placeholder="Description Text" cols="24"></textarea><br>
@@ -234,43 +236,70 @@ $license_row = mysqli_fetch_assoc($license_rows);
             <span class="license_modal_close w3-xxlarge" style="cursor: pointer">&times;</span>
             <h1>Add new License</h1>
         </div>
-        <form class="modal-body"  method="post" action="license_form.php">
-            <p class="w3-xlarge" style="padding-left: 3px; margin: 5px;" id="activation_date" name="activation_date"> Activation Date: <script> var my_date = new Date(); my_date.toISOString().split('T')[0]; document.write(my_date); </script></p><br>
-            <p style="padding: 3px; margin: 5px;">End of license:</p><br>
+        <form class="modal-body" method="post" action="license_form.php">
+            <h1 style="padding-left: 3px; margin: 5px;" id="activation_date" name="activation_date"> Activation Date: <script> var my_date = new Date(); my_date.toISOString().split('T')[0]; document.write(my_date); </script></h1>
+            <p class="w3-xlarge" style="padding: 3px; margin: 5px;">End of license:</p>
             <input style="padding: 3px; margin: 5px;" id="license_duration" name="license_duration" placeholder="YYYY-MM-DD"><br>
             <button style="padding: 3px; margin: 5px;" id="license_modal_submit" name="license_modal_submit" type="submit">Add License</button>
         </form>
     </div>
 </div>
-<!-- Main content -->
-    <!-- File Upload -->
-<form enctype="multipart/form-data" action="uploader.php" method="POST" 
-    style ="margin-left: 80%; margin-top: 3%;"
-    class ="w3-large"><input id="my_uploadButton" name="uploadedfile" type="file" hidden/>
-    <label class="w3-button w3-hover-red" style = "background-color: #222222; color:whitesmoke;" for="my_uploadButton">Select your Software here</label><br>
-    <input class ="w3-large w3-button w3-hover-red" style="background-color: #EE494A; margin-left:18%;" type="submit" value="Upload File"/>
-</form>
 
+<!-- DeleteLicense-Modal -->
+<div id="deleteLicenseModal" class="modal">
+    <div class="modal-content" style="margin-left: 15%">
+        <div class="modal-header">
+            <span class="delete_license_modal_close w3-xxlarge" style="cursor: pointer">&times;</span>
+            <h1>Choose a License to delete</h1>
+        </div>
+        <form class="modal-body" method="post" action="delete_license_form.php">
+            <select id="selected_license_to_delete" name="selected_license_to_delete">
+                    <?php foreach($delete_license_rows as $select_license_to_delete){?>
+                        <option style="padding: 3px; margin: 5px;" value = "<?php echo $select_license_to_delete['license'] ?>"><?php echo $select_license_to_delete['license'] ?></option>
+                    <?php } ?>
+            </select><br>
+            <button style="padding: 3px; margin: 5px;" id="delete_license_modal_submit" name="delete_license_modal_submit" type="submit">Delete selected License</button>
+        </form>
+    </div>
+</div>
+
+<!-- Main content -->
     <!-- Table -->
 <div style="margin-left:18%; margin-top:7%" class="w3-responsive w3-container w3-center">
 <?php 
         if(mysqli_num_rows($license_rows) < 1){ ?>
                 <div>
-                        <?php echo $row['description_title'] ?>
-                        <h1>No License(s) found for this Product!</h1>
+                        <h1><?php echo $row['name'] ?></h1>
+                        <h1>No Product or License(s) found!</h1>
                     </div>
-                   
+                <div style="text-align: center; margin-top: 1%" class="w3-large">
+                <button id ="newLicenseButton" class="w3-button w3-hover-red" onclick="licenseModalFunc()" style="margin-right: 5%; background-color: #EE494A; border: 1px solid black; width:150px; text-align: center;">Add License</button>
+                </div>
+
 <?php  } 
         
         else{ ?>
-        <table id="license_table" class="w3-table w3-bordered w3-border w3-centered">
-            <thead class = "w3-xlarge">
-                <tr>
-                     <th> </th>
-                     <th><?php echo $row['description_title']?></th>
-                     <th> </th>
-                 </tr>
-            </thead>
+<!-- File Upload & License Table -->
+        <div style ="margin-top: 0%">
+        <!--<form enctype="multipart/form-data" action="download.php" method="POST" 
+            style ="margin-right: 87%"
+            class ="w3-large"><input id="my_downloadButton" name="downloadClient" type="file" hidden/>
+            <input class ="w3-large w3-button w3-hover-red" style="background-color: #EE494A; margin-top:2%" type="submit" value="Download Client"/>
+        </form> -->
+        <form enctype="multipart/form-data" action="uploader.php" method="POST" 
+            style ="margin-left: 77%"
+            class ="w3-large"><input id="my_uploadButton" name="uploadedfile" type="file" hidden/>
+            <label class="w3-button w3-hover-red" style = "background-color: #222222; color:whitesmoke; margin-right: 19%; border: 1px solid black;" for="my_uploadButton">Select your Software here</label><br>
+            <input class ="w3-large w3-button w3-hover-red" style="background-color: #EE494A; margin-left:18%; margin-top:2%; border: 1px solid black;" type="submit" value="Upload File"/>
+        </form>
+        <div style="margin-left:78%; margin-top:7px;">
+        <a href="path=/auth/testClient.exe" download=""> <input class ="w3-large w3-button w3-hover-red" style="background-color: #222222; color:whitesmoke; border: 1px solid black;" type="submit" value="Download Client"/> </a>
+        </div>
+        </div>
+        <div id ="license_table">
+        <h1 style = "margin-top: 3%"><?php echo $row['name']?></h1>
+        <div style = "margin-right: 4%">
+        <table id="license_table" class="w3-table w3-bordered w3-border w3-centered w3-large">
             <tr class = "w3-large">
                  <th>License</th>
                  <th>HWID</th>
@@ -284,14 +313,13 @@ $license_row = mysqli_fetch_assoc($license_rows);
             </tr>
             <?php }?>
          </table>
-         <div style="text-align: center; margin-top: 1%" class="w3-large">
-             <button id ="newLicenseButton" class="w3-button w3-hover-red" onclick="licenseModalFunc()" style="margin-right: 5%; background-color: #EE494A; border: 1px solid black; width:90px; text-align: center;">Add</button>
-             <button class="w3-button w3-hover-red" style="margin-right: 5%; background-color: #EE494A; border: 1px solid black; width:90px; text-align: center;">Modify</button>
-             <button class="w3-button w3-hover-red" style="margin-right: 5%; background-color: #EE494A; border: 1px solid black; width:90px; text-align: center;">Delete</button>
          </div>
- <?php   }
-
-?>
+         </div>
+ <?php   }?>
+        <div style="text-align: center; margin-top: 1%" class="w3-large">
+             <button id ="newLicenseButton" class="w3-button w3-hover-red" onclick="licenseModalFunc()" style="margin-right: 3%; background-color: #EE494A; border: 1px solid black; width:90px; text-align: center;">Add</button>
+             <button id = "deleteLicenseButton" class="w3-button w3-hover-red" onclick="deleteLicenseModalFunc()" style="background-color: #EE494A; border: 1px solid black; width:90px; text-align: center;">Delete</button>
+         </div>
 </div>
 <script>
         function w3_open() {
@@ -406,6 +434,30 @@ $license_row = mysqli_fetch_assoc($license_rows);
         window.onclick = function(event) {
             if (event.target == licenseModal) {
                 licenseModal.style.display = "none";
+                }
+            }
+    };
+</script>
+
+<!-- DeleteLicense-Modal script -->
+<script>
+function deleteLicenseModalFunc(){
+        var deleteLicenseModal = document.getElementById("deleteLicenseModal");
+        var deleteLicenseFinished = document.getElementById("delete_license_modal_submit")
+        var deleteLicenseBtn = document.getElementById("deleteLicenseButton");
+        var deleteLicenseSpan = document.getElementsByClassName("delete_license_modal_close")[0];
+        deleteLicenseBtn.onclick = function() {
+            deleteLicenseModal.style.display = "block";
+        }
+        deleteLicenseSpan.onclick = function() {
+            deleteLicenseModal.style.display = "none";
+        }
+        deleteLicenseFinished.onclick = function() {
+            deleteLicenseModal.style.display = "none";
+        }
+        window.onclick = function(event) {
+            if (event.target == deleteLicenseModal) {
+                deleteLicenseModal.style.display = "none";
                 }
             }
     };

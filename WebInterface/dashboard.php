@@ -1,15 +1,17 @@
 <?php
-// redirect user to login if not logged in
 include('server.php');
 include('product_form.php');
 
 if (empty($_SESSION['id'])) {
     header('location: login.php');
 }
-$query = "SELECT * FROM products WHERE user_id = '{$_SESSION['id']}'";
+$query = "SELECT p.*, u.id, u.username FROM products p LEFT JOIN users u on p.user_id = u.id WHERE p.user_id = '{$_SESSION['id']}'";
 $rows = mysqli_query($connection, $query);
-$row = mysqli_fetch_assoc($rows);
 
+$admin_query = "SELECT * FROM users WHERE id = '{$_SESSION['id']}'";
+$admin_rows = mysqli_query($connection, $admin_query);
+$user_info = mysqli_fetch_array($admin_rows, MYSQLI_ASSOC);
+$admin_true = $user_info['is_admin'];
 ?>
 
 <!DOCTYPE html>
@@ -139,7 +141,6 @@ $row = mysqli_fetch_assoc($rows);
     }
 </style>
 <body>
-
 <!-- Top header-->
 <div style="border-bottom: 1px solid black">
     <header class="w3-container w3-xlarge">
@@ -161,25 +162,25 @@ $row = mysqli_fetch_assoc($rows);
 
 <!-- Main content -->
 <h1 style ="text-align: center; margin-left: 18%">Welcome back, <?php echo $_SESSION['username'] ?>!</h1>
-<div id ="table_updater" class="w3-row-padding w3-center w3-margin-top" style="margin-left:18%">
+<div id ="table_updater" class="w3-row-padding w3-center w3-margin-top" style="margin-left:21%">
     <div class="w3-third">
         <div class="w3-card w3-container" style="min-height:160px; width: 350px; text-align: left">
             <h3>Latest news:</h3>
-            <p>Lorem Ipsum</p>
+            <p>-) Soon we will launch this project!</p>
         </div>
     </div>
 
     <div class="w3-third">
         <div class="w3-card w3-container" style="min-height:160px; width: 350px; text-align: left;">
             <h3>Recent activities:</h3>
-            <p>Lorem Ipsum</p>
+            <p>-) Advancing the WebInterface to make it ready for the launch!</p>
         </div>
     </div>
 
     <div class="w3-third">
         <div class="w3-card w3-container" style="min-height:160px; width: 350px; text-align: left">
             <h3>Version history:</h3>
-            <p>Lorem Ipsum</p>
+            <p>0.1 : Prototype finished</p>
         </div>
     </div>
 </div>
@@ -191,22 +192,26 @@ $row = mysqli_fetch_assoc($rows);
     <div id= "myButtons" class="w3-bar-block" style="font-size: x-large;">
         <a id = "dashboard-page" href="dashboard.php" onclick="w3_close()" style="color: whitesmoke; text-align: center;" class="w3-bar-item w3-button w3-hover-red btn sideBarMarker">Dashboard</a>
         <div class ="w3-dropdown-hover">
+        <?php if($admin_true == '1'){?>
+                    <a id = "admin_panel" href="admin_panel.php" onclick="w3_close()" style="color: whitesmoke; text-align: center;" class="w3-bar-item w3-button w3-hover-red btn">Admin Panel</a>
+                <?php }
+            else{   ?>
             <a id = "products-page" href="products.php" style="color: whitesmoke; text-align: center;" class="w3-bar-item w3-button w3-hover-red btn">Products</a>
             <div id="myProductList" method="POST" class="w3-dropdown-content w3-bar-block w3-card-4" style="position: absolut; left:100%; top:0;">
                 <?php 
                     foreach($rows as $unique_product){ ?>
                         <button style="background-color: #222222; color: whitesmoke; padding-bottom: 10px; text-align: center; width: 400px;" 
                         class ="w3-bar-item w3-button w3-hover-red table_updater" onClick="location.href='products.php';" id= "list_product" name="list_product" type="submit" 
-                        value = "<?php echo $unique_product['description_title'] ?>"><?php echo $unique_product['description_title'] 
+                        value = "<?php echo $unique_product['name'] ?>"><?php echo $unique_product['name'] 
                         ?></button>
                 <?php   }
                 ?>
-                <button class="w3-bar-item w3-button w3-hover-red" style="color: whitesmoke; text-align: center; background-color: #222222;" id= "new_product" name="new_product" >-- Add New Product --</button>
-            </div>
+             </div>
         </div>
         <a id = "news-page" href="news.php" onclick="w3_close()" style="color: whitesmoke; text-align: center;" class="w3-bar-item w3-button w3-hover-red btn">News</a>
         <a id = "support-page" href="support.php" onclick="w3_close()" style="color: whitesmoke; text-align: center;" class="w3-bar-item w3-button w3-hover-red btn">Support</a>
     </div>
+    <?php }?>
     <a href="javascript:void(0)" onclick="w3_close()" class="w3-button w3-hide-large w3-display-bottom" style="100%;font-size:22px;">Close Menu</a>
 </nav>
 
@@ -221,25 +226,6 @@ Overlay effect when opening sidebar on small screens
 
 <div class="w3-main" style="margin-left:340px;margin-right:40px">
 -->
-<div id="myModal" class="modal">
-    <!-- Modal content -->
-    <div class="modal-content" style="margin-left: 18%">
-        <div class="modal-header">
-            <span class="close">&times;</span>
-            <h1>add new product</h1>
-        </div>
-        <form class="modal-body"  method="post" action="product_form.php">
-            <input style="padding: 3px; margin: 5px;" id="product_name" name="product_name" placeholder="product name"><br>
-            <input style="padding: 3px; margin: 5px;" id="description_title" name="description_title" placeholder="description title"><br>
-            <textarea style="padding: 3px; margin: 5px;" id="description_text" name="description_text" placeholder="description text" cols="24"></textarea><br>
-            <select style="padding: 3px; margin: 5px;" id="architecture" name="architecture">
-                <option value="nativex64">Native x64 (C/C++)</option>
-                <option value="clr">CLR (C#)</option>
-            </select><br>
-            <button style="padding: 3px; margin: 5px;" id="submit_form" name="submit_form" type="submit">Add Product</button>
-        </form>
-    </div>
-</div>
 
 <script>
     function w3_open() {
@@ -273,7 +259,8 @@ Overlay effect when opening sidebar on small screens
         evt.currentTarget.className += "sideBarMarker";
     } */
 </script>
-    <script>
+<!-- Logout -->
+<script>
 
         function openMyDropdown(){
             const dropdown = document.getElementById('myDropdown');
@@ -293,9 +280,9 @@ Overlay effect when opening sidebar on small screens
             }
         }
 
-    </script>
+</script>
 
-    <script>
+<script>
         // Get the modal
         var modal = document.getElementById("myModal");
 
@@ -329,6 +316,6 @@ Overlay effect when opening sidebar on small screens
                 modal.style.display = "none";
             }
         }
-    </script>
+</script>
 </body>
 </html>

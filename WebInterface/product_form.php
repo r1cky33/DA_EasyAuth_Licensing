@@ -19,6 +19,17 @@ if(isset($_POST["product_modal_submit"])) {
             $_descr_text = mysqli_real_escape_string($connection, $descr_text);
             $_architecture = mysqli_real_escape_string($connection, $architecture);
 
+            $check_if_exist = "SELECT * FROM products WHERE name = '$_product_name'";
+            $check_if_exist_query = mysqli_query($connection, $check_if_exist);
+            $check_if_exist_rows = mysqli_num_rows($check_if_exist_query);
+
+            if($check_if_exist_rows>=1){
+                echo '<script type="text/javascript">alert("Product name already exists!");
+                        window.location.href = "products.php";
+                </script>';
+            }
+            else{
+
             if($_POST['architecture'] == 'nativex64'){
                 $_architecture = '1';
             }
@@ -36,23 +47,27 @@ if(isset($_POST["product_modal_submit"])) {
 
             header("location: products.php");
 
-            }
+            }}
     else {
         if(empty($_product_name)){
-            echo '<script type="text/javascript">alert("product name can not be blank")</script>';
-            die();
+            echo '<script type="text/javascript">alert("product name can not be blank");
+            window.location.href = "products.php";
+            </script>';
         }
         if(empty($_descr_title)){
-            echo '<script type="text/javascript">alert("description title can not be blank")</script>';
-            die();
+            echo '<script type="text/javascript">alert("description title can not be blank");
+            window.location.href = "products.php";
+            </script>';
         }
         if(empty($_descr_text)){
-            echo '<script type="text/javascript">alert("description can not be blank")</script>';
-            die();
+            echo '<script type="text/javascript">alert("description can not be blank");
+            window.location.href = "products.php";
+            </script>';
         }
         if(empty($_architecture)){
-            echo '<script type="text/javascript">alert("architecture can not be blank")</script>';
-            die();
+            echo '<script type="text/javascript">alert("architecture can not be blank");
+            window.location.href = "products.php";
+            </script>';
         }
     }
 }

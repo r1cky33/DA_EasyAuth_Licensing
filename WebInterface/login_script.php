@@ -28,8 +28,9 @@ if(isset($_GET["loginbtn"])) {
         }
         // Check if email exist
         if($rowCount <= 0) {
-            echo '<script type="text/javascript">alert("account does not exist")</script>';
-            die();
+            echo '<script type="text/javascript">alert("account does not exist");
+            window.location.href = "login.php";
+            </script>';
         } else {
             // Fetch user data and store in php session
             while($row = mysqli_fetch_array($query)) {
@@ -55,25 +56,29 @@ if(isset($_GET["loginbtn"])) {
                     header("location: dashboard.php");
 
                 } else {
-                    echo '<script type="text/javascript">alert("something is wrong with email or password")</script>';
-                    die();;
+                    echo '<script type="text/javascript">alert("something is wrong with email or password");
+                    window.location.href = "login.php";
+                    </script>';
                 }
             } else {
-                echo '<script type="text/javascript">alert("verification not completed")</script>';
-                die();
+                echo '<script type="text/javascript">alert("verification not completed");
+                window.location.href = "login.php";
+                </script>';
             }
 
         }
 
     } else {
         if(empty($email_signin)){
-            echo '<script type="text/javascript">alert("email left empty")</script>';
-            die();
+            echo '<script type="text/javascript">alert("email left empty");
+            window.location.href = "login.php";
+            </script>';
         }
 
         if(empty($password_signin)){
-            echo '<script type="text/javascript">alert("password left empty")</script>';
-            die();
+            echo '<script type="text/javascript">alert("password left empty");
+            window.location.href = "login.php";
+            </script>';
         }
     }
 

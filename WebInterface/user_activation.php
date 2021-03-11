@@ -19,21 +19,20 @@ if($token != "") {
             if($is_active == 0) {
                 $update = mysqli_query($connection, "UPDATE users SET is_active = '1' WHERE token = '$token' ");
                 if($update){
-                    echo '<script type="text/javascript">alert("verification successful")</script>';
-                    sleep(3);
-                    header("location: login.php");
+                    echo '<script type="text/javascript">alert("verification successful");
+                    window.location.href = "login.php";
+                    </script>';
                 }
             } else {
-                echo '<script type="text/javascript">alert("e-mail already verified")</script>';
-                sleep(3);
-                header("location: login.php");
+                echo '<script type="text/javascript">alert("e-mail already verified");
+                window.location.href = "login.php";
+                </script>';
             }
         }
     } else {
-        echo '<script type="text/javascript">alert("somehow ois beat")</script>';
-        sleep(3);
-        die();
-
+        echo '<script type="text/javascript">alert("somehow ois beat");
+        window.location.href = "register.php";
+        </script>';
     }
 }
 

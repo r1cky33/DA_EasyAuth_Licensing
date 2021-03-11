@@ -15,9 +15,9 @@ include 'signup_script.php';
 <link rel="stylesheet" href="style.css">
 </head>
 <body style ="background-color: #EE494A">
-<div class="w3-display-container w3-display-middle w3-white w3-round-xxlarge" style ="height:450px; width: 600px; border: 2px solid black;">
-    <div class ="w3-display-topmiddle w3-xxlarge" style ="padding-top: 3%;">EasyAuth</div>
-    <div class ="w3-display-middle w3-medium">
+<div class="w3-display-container w3-display-middle w3-white w3-round-xxlarge" style ="height:550px; width: 600px; border: 2px solid black;">
+    <img class ="w3-display-topmiddle" src="moga_logo.png" alt="logo" style="width: 210px;height: 130px; padding-top: 3%">
+    <div class ="w3-display-middle w3-medium" style="padding-top:22%">
         <form method = "post" action="register.php" class="w3-container">
             <input name= "username" id="name" class="w3-input w3-border w3-section" type="text" placeholder="name">
             <input name ="email" id="email" class="w3-input w3-border w3-section" type="email" placeholder="e-mail">
@@ -25,6 +25,7 @@ include 'signup_script.php';
             <input name ="pw_confirm" id="pw_confirm" class="w3-input w3-border w3-section" type="password" placeholder="confirm password">
             <input id="submit" name="submit" type="submit" class="w3-btn w3-blue w3-round-large" style ="margin-left: 33%">
             <p style ="font-size: 14px; color: dimgray">Already got an account? - <a href="login.php">click here!</a></p>
+            <p style ="font-size: 14px; color: dimgray; padding-top:6%;">Password: 8 to 24 characters, at least one special character, lowercase & uppercase char and a digit</p>
         </form>
     </div>
 </div>

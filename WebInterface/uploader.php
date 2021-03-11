@@ -12,18 +12,19 @@ $target_path = $target_path . $hash_name;
 
 if(move_uploaded_file($_FILES['uploadedfile']['tmp_name'], $target_path)) {
 
-    echo "The file has been uploaded";
-
-    //creating hash from filename
-
-    $sql = "UPDATE products SET name ='" . $hash_name . "' WHERE name = '"  . $raw_file_name . "'";
-
+    $sql = "UPDATE products SET software_name_hash ='" . $hash_name . "' WHERE product_id = '"  . $_SESSION['sessionProductID'] . "'";
     $sqlQuery = mysqli_query($connection, $sql);
+
+    if($sqlQuery){
+        echo '<script type="text/javascript">alert("File has been uploaded!")
+        window.location.href = "products.php";
+        </script>';
+    }
 
     if(!$sqlQuery){
         die("MySQL query failed!" . mysqli_error($connection));
     }
 
 } else{
-    echo "There was an error uploading the file, please try again!";
+    echo '<script type="text/javascript">alert("There was an error uploading the file, please try again!")</script>';
 }

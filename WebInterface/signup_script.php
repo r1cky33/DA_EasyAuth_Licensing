@@ -23,9 +23,11 @@ if(isset($_POST["submit"])) {
 
         // check if user email already exist
         if($rowCount > 0) {
-            echo '<script type="text/javascript">alert("e-mail already exists")</script>';
-            die();
-        } else {
+            echo '<script type="text/javascript">alert("e-mail already exists");
+            window.location.href = "register.php";
+            </script>';
+        } 
+        else {
 
             // clean the form data before sending to database
             $_username = mysqli_real_escape_string($connection, $username);
@@ -35,20 +37,24 @@ if(isset($_POST["submit"])) {
 
             // perform validation
             if(!preg_match("/^[a-zA-Z0-9]*$/", $_username)) {
-                echo '<script type="text/javascript">alert("in username: numbers and letters only")</script>';
-                die();
+                echo '<script type="text/javascript">alert("in username: numbers and letters only");
+                window.location.href = "register.php";
+                </script>';
             }
             if(!filter_var($_email, FILTER_VALIDATE_EMAIL)) {
-                echo '<script type="text/javascript">alert("error in e-mail")</script>';
-                die();
+                echo '<script type="text/javascript">alert("error in e-mail");
+                window.location.href = "register.php";
+                </script>';
             }
             if(!preg_match("/^(?=.*\d)(?=.*[@#\-_$%^&+=§!\?])(?=.*[a-z])(?=.*[A-Z])[0-9A-Za-z@#\-_$%^&+=§!\?]{8,24}$/", $_password)) {
-                echo '<script type="text/javascript">alert("Password between 8 to 24 characters, at least one special character, lowercase, uppercase and a digit.")</script>';
-                die();
+                echo '<script type="text/javascript">alert("Password between 8 to 24 characters, at least one special character, lowercase, uppercase and a digit.");
+                window.location.href = "register.php";
+                </script>';
             }
             if($_password != $_password_conf){
-                echo '<script type="text/javascript">alert("passwords do not match")</script>';
-                die();
+                echo '<script type="text/javascript">alert("passwords do not match");
+                window.location.href = "register.php";
+                </script>';
             }
             // Store the data in db, if all the preg_match condition met
             else{
@@ -61,7 +67,7 @@ if(isset($_POST["submit"])) {
 
                 // Query
 
-                $sql = "INSERT INTO users (username, email, password, token, is_active) VALUES ('{$_username}','{$_email}','{$password_hash}', '{$token}', '0');";
+                $sql = "INSERT INTO users (username, email, password, token, is_active, is_admin) VALUES ('{$_username}','{$_email}','{$password_hash}', '{$token}', '0', '0');";
 
                 // Create mysql query
                 $sqlQuery = mysqli_query($connection, $sql);
@@ -73,19 +79,19 @@ if(isset($_POST["submit"])) {
                 // Send verification email
                 else {
                     $msg = 'Click on the activation link to verify your email. <br><br>
-                          <a href="http://localhost:8000/user_activation.php?token='.$token.'"> Click here to verify email</a>
+                          <a href="http://192.168.1.110:8000/user_activation.php?token='.$token.'"> Click here to verify email</a>
                         ';
 
                     // Create the Transport
                     $transport = (new Swift_SmtpTransport('smtp.gmail.com', 465, 'ssl'))
                         ->setUsername('easyauth.dontresponde@gmail.com')
-                        ->setPassword('easyauth123');
+                        ->setPassword('kjcjrecuqwmuzhqd');
 
                     // Create the Mailer using your created Transport
                     $mailer = new Swift_Mailer($transport);
 
                     // Create a message
-                    $message = (new Swift_Message('Please Verify Email Address!'))
+                    $message = (new Swift_Message('Please Verify Your Email Address!'))
                         ->setFrom([$_email => $_username])
                         ->setTo($_email)
                         ->addPart($msg, "text/html")
@@ -95,14 +101,14 @@ if(isset($_POST["submit"])) {
                     $result = $mailer->send($message);
 
                     if($result) {
-                        echo '<script type="text/javascript">alert("verification e-mail has been sent")</script>';
-                        sleep(3);
-                        header("location: login.php");
+                        echo '<script type="text/javascript">alert("verification e-mail has been sent");
+                        window.location.href = "login.php";
+                        </script>';
                     }
                     else{
-                        echo '<script type="text/javascript">alert("could not send verification e-mail")</script>';
-                        sleep(3);
-                        die();
+                        echo '<script type="text/javascript">alert("could not send verification e-mail");
+                        window.location.href = "register.php";
+                        </script>';
                     }
 
                 }
@@ -111,16 +117,19 @@ if(isset($_POST["submit"])) {
     }
     else {
         if(empty($_username)){
-            echo '<script type="text/javascript">alert("username can not be blank")</script>';
-            die();
+            echo '<script type="text/javascript">alert("username can not be blank");
+            window.location.href = "register.php";
+            </script>';
         }
         if(empty($_email)){
-            echo '<script type="text/javascript">alert("e-mail can not be blank")</script>';
-            die();
+            echo '<script type="text/javascript">alert("e-mail can not be blank");
+            window.location.href = "register.php";
+            </script>';
         }
         if(empty($_password)){
-            echo '<script type="text/javascript">alert("password can not be blank")</script>';
-            die();
+            echo '<script type="text/javascript">alert("password can not be blank");
+            window.location.href = "register.php";
+            </script>';
         }
     }
 }
