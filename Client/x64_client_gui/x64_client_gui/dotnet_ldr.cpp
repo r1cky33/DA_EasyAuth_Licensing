@@ -26,7 +26,7 @@ namespace dotnet_ldr {
 		if (FAILED(hr)) {
 			delete[] raw_data;
 
-			::MessageBoxA(nullptr, _xor_("Exception occured on 'hostInCLR'!").c_str(), _xor_("ERROR").c_str(), 0);
+			::MessageBoxA(nullptr, _xor_("Exception occured on 'hostInCLR'!"), _xor_("ERROR"), 0);
 			return -1;
 		}
 
@@ -55,8 +55,8 @@ namespace dotnet_ldr {
 			{
 				delete[] raw_data;
 
-				::MessageBoxA(nullptr, _xor_("Exception occured on 'hostInCLR'!").c_str(), _xor_("ERROR").c_str(), 0);
-				return -1;
+				::MessageBoxA(nullptr, _xor_("Exception occured on 'hostInCLR'!"), _xor_("ERROR"), 0);
+				return S_FALSE;
 			}
 
 			ICorRuntimeHost* pRuntimeHost = NULL;
@@ -66,8 +66,8 @@ namespace dotnet_ldr {
 			{
 				delete[] raw_data;
 
-				::MessageBoxA(nullptr, _xor_("Exception occured on 'hostInCLR'!").c_str(), _xor_("ERROR").c_str(), 0);
-				return -1;
+				::MessageBoxA(nullptr, _xor_("Exception occured on 'hostInCLR'!"), _xor_("ERROR"), 0);
+				return S_FALSE;
 			}
 
 			/*Start Runtimehost*/
@@ -77,7 +77,7 @@ namespace dotnet_ldr {
 			{
 				delete[] raw_data;
 
-				::MessageBoxA(nullptr, _xor_("Exception occured on 'hostInCLR'!").c_str(), _xor_("ERROR").c_str(), 0);
+				::MessageBoxA(nullptr, _xor_("Exception occured on 'hostInCLR'!"), _xor_("ERROR"), 0);
 				return -1;
 			}
 
@@ -89,8 +89,8 @@ namespace dotnet_ldr {
 			{
 				delete[] raw_data;
 
-				::MessageBoxA(nullptr, _xor_("Exception occured on 'hostInCLR'!").c_str(), _xor_("ERROR").c_str(), 0);
-				return -1;
+				::MessageBoxA(nullptr, _xor_("Exception occured on 'hostInCLR'!"), _xor_("ERROR"), 0);
+				return S_FALSE;
 			}
 
 			_AppDomainPtr pDefaultAppDomain = NULL;
@@ -102,8 +102,8 @@ namespace dotnet_ldr {
 			{
 				delete[] raw_data;
 
-				::MessageBoxA(nullptr, _xor_("Exception occured on 'hostInCLR'!").c_str(), _xor_("ERROR").c_str(), 0);
-				return -1;
+				::MessageBoxA(nullptr, _xor_("Exception occured on 'hostInCLR'!"), _xor_("ERROR"), 0);
+				return S_FALSE;
 			}
 
 			_AssemblyPtr pAssembly = NULL;
@@ -121,8 +121,8 @@ namespace dotnet_ldr {
 			{
 				delete[] raw_data;
 
-				::MessageBoxA(nullptr, _xor_("Exception occured on 'hostInCLR'!").c_str(), _xor_("ERROR").c_str(), 0);
-				return -1;
+				::MessageBoxA(nullptr, _xor_("Exception occured on 'hostInCLR'!"), _xor_("ERROR"), 0);
+				return S_FALSE;
 			}
 			
 			memcpy(pvData, raw_data, raw_data_size);
@@ -132,8 +132,8 @@ namespace dotnet_ldr {
 			{
 				delete[] raw_data;
 
-				::MessageBoxA(nullptr, _xor_("Exception occured on 'hostInCLR'!").c_str(), _xor_("ERROR").c_str(), 0);
-				return -1;
+				::MessageBoxA(nullptr, _xor_("Exception occured on 'hostInCLR'!"), _xor_("ERROR"), 0);
+				return S_FALSE;
 			}
 
 			/* Equivalent of System.AppDomain.CurrentDomain.Load(byte[] rawAssembly) */
@@ -143,8 +143,8 @@ namespace dotnet_ldr {
 			{
 				delete[] raw_data;
 
-				::MessageBoxA(nullptr, _xor_("Exception occured on 'hostInCLR'!").c_str(), _xor_("ERROR").c_str(), 0);
-				return -1;
+				::MessageBoxA(nullptr, _xor_("Exception occured on 'hostInCLR'!"), _xor_("ERROR"), 0);
+				return S_FALSE;
 			}
 
 			_MethodInfoPtr pMethodInfo = NULL;
@@ -156,8 +156,8 @@ namespace dotnet_ldr {
 			{
 				delete[] raw_data;
 
-				::MessageBoxA(nullptr, _xor_("Exception occured on 'hostInCLR'!").c_str(), _xor_("ERROR").c_str(), 0);
-				return -1;
+				::MessageBoxA(nullptr, _xor_("Exception occured on 'hostInCLR'!"), _xor_("ERROR"), 0);
+				return S_FALSE;
 			}
 
 			VARIANT retVal;
@@ -174,8 +174,8 @@ namespace dotnet_ldr {
 			{
 				delete[] raw_data;
 
-				::MessageBoxA(nullptr, _xor_("Exception occured on 'hostInCLR'!").c_str(), _xor_("ERROR").c_str(), 0);
-				return -1;
+				::MessageBoxA(nullptr, _xor_("Exception occured on 'hostInCLR'!"), _xor_("ERROR"), 0);
+				return S_FALSE;
 			}
 		}
 		return S_OK;

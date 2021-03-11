@@ -40,6 +40,12 @@
     <Filter Include="Source Files\globals">
       <UniqueIdentifier>{fdf01687-3bb7-4700-a92a-9ac082aea076}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\cache">
+      <UniqueIdentifier>{26a9a72d-ab99-4176-8ced-80f918495f34}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\utils">
+      <UniqueIdentifier>{dc243213-3539-497e-ae40-8cea5f08ad08}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -96,6 +102,12 @@
     <ClInclude Include="globals.h">
       <Filter>Source Files\globals</Filter>
     </ClInclude>
+    <ClInclude Include="cache.h">
+      <Filter>Source Files\cache</Filter>
+    </ClInclude>
+    <ClInclude Include="utils.h">
+      <Filter>Source Files\utils</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source.cpp">
@@ -145,6 +157,12 @@
     </ClCompile>
     <ClCompile Include="globals.cpp">
       <Filter>Source Files\globals</Filter>
+    </ClCompile>
+    <ClCompile Include="cache.cpp">
+      <Filter>Source Files\cache</Filter>
+    </ClCompile>
+    <ClCompile Include="utils.cpp">
+      <Filter>Source Files\utils</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

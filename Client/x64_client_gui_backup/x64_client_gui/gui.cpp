@@ -14,8 +14,8 @@ namespace gui {
 	static IDXGISwapChain* g_pSwapChain = nullptr;
 	static ID3D11RenderTargetView* g_mainRenderTargetView = nullptr;
 
-	uint32_t screen_width = GetSystemMetrics(SM_CXSCREEN);
-	uint32_t screen_height = GetSystemMetrics(SM_CYSCREEN);
+	uint32_t screen_width = ::GetSystemMetrics(SM_CXSCREEN);
+	uint32_t screen_height = ::GetSystemMetrics(SM_CYSCREEN);
 
 	void create_render_target() {
 		ID3D11Texture2D* pBackBuffer;
@@ -76,7 +76,7 @@ namespace gui {
 			wnd_proc,
 			0L,
 			0L,
-			GetModuleHandle(nullptr),
+			::GetModuleHandle(nullptr),
 			0,
 			0,
 			0,
@@ -86,8 +86,8 @@ namespace gui {
 		};
 
 		// register and create GUI window
-		RegisterClassEx(&wc);
-		HWND hwnd = CreateWindow(wc.lpszClassName,
+		::RegisterClassEx(&wc);
+		HWND hwnd = ::CreateWindow(wc.lpszClassName,
 			_T("EasyAuth v0.1"), 
 			WS_CAPTION | WS_SYSMENU | WS_VISIBLE | WS_MINIMIZEBOX, /*non-resizable window*/
 			screen_width / 2, 
@@ -104,13 +104,13 @@ namespace gui {
 		// initialize DirectX
 		if (!create_d3ddevice(hwnd)) {
 			cleanup_d3ddevice();
-			UnregisterClass(wc.lpszClassName, wc.hInstance);
+			::UnregisterClass(wc.lpszClassName, wc.hInstance);
 			return false;
 		}
 
 		// show and update the window
-		ShowWindow(hwnd, SW_SHOWDEFAULT);
-		UpdateWindow(hwnd);
+		::ShowWindow(hwnd, SW_SHOWDEFAULT);
+		::UpdateWindow(hwnd);
 
 		// setup GUI-Framework
 		IMGUI_CHECKVERSION();
@@ -132,10 +132,10 @@ namespace gui {
 		// main GUI loop
 		while (msg.message != WM_QUIT)
 		{
-			if (PeekMessage(&msg, NULL, 0U, 0U, PM_REMOVE))
+			if (::PeekMessage(&msg, NULL, 0U, 0U, PM_REMOVE))
 			{
-				TranslateMessage(&msg);
-				DispatchMessage(&msg);
+				::TranslateMessage(&msg);
+				::DispatchMessage(&msg);
 				continue;
 			}
 
@@ -187,7 +187,7 @@ namespace gui {
 				return 0;
 			break;
 		case WM_DESTROY:
-			PostQuitMessage(0);
+			::PostQuitMessage(0);
 			return 0;
 
 		}

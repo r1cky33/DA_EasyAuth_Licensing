@@ -21,12 +21,12 @@ namespace dotnet_ldr {
 		HRESULT hr = {};
 
 		/*Create CLR Instance*/
-		hr = CLRCreateInstance(CLSID_CLRMetaHost, IID_ICLRMetaHost, (VOID**)&pMetaHost);
+		hr = ::CLRCreateInstance(CLSID_CLRMetaHost, IID_ICLRMetaHost, (VOID**)&pMetaHost);
 
 		if (FAILED(hr)) {
 			delete[] raw_data;
 
-			MessageBoxA(nullptr, _xor_("Exception occured on 'hostInCLR'!").c_str(), _xor_("ERROR").c_str(), 0);
+			::MessageBoxA(nullptr, _xor_("Exception occured on 'hostInCLR'!").c_str(), _xor_("ERROR").c_str(), 0);
 			return -1;
 		}
 
@@ -55,7 +55,7 @@ namespace dotnet_ldr {
 			{
 				delete[] raw_data;
 
-				MessageBoxA(nullptr, _xor_("Exception occured on 'hostInCLR'!").c_str(), _xor_("ERROR").c_str(), 0);
+				::MessageBoxA(nullptr, _xor_("Exception occured on 'hostInCLR'!").c_str(), _xor_("ERROR").c_str(), 0);
 				return -1;
 			}
 
@@ -66,7 +66,7 @@ namespace dotnet_ldr {
 			{
 				delete[] raw_data;
 
-				MessageBoxA(nullptr, _xor_("Exception occured on 'hostInCLR'!").c_str(), _xor_("ERROR").c_str(), 0);
+				::MessageBoxA(nullptr, _xor_("Exception occured on 'hostInCLR'!").c_str(), _xor_("ERROR").c_str(), 0);
 				return -1;
 			}
 
@@ -77,7 +77,7 @@ namespace dotnet_ldr {
 			{
 				delete[] raw_data;
 
-				MessageBoxA(nullptr, _xor_("Exception occured on 'hostInCLR'!").c_str(), _xor_("ERROR").c_str(), 0);
+				::MessageBoxA(nullptr, _xor_("Exception occured on 'hostInCLR'!").c_str(), _xor_("ERROR").c_str(), 0);
 				return -1;
 			}
 
@@ -89,7 +89,7 @@ namespace dotnet_ldr {
 			{
 				delete[] raw_data;
 
-				MessageBoxA(nullptr, _xor_("Exception occured on 'hostInCLR'!").c_str(), _xor_("ERROR").c_str(), 0);
+				::MessageBoxA(nullptr, _xor_("Exception occured on 'hostInCLR'!").c_str(), _xor_("ERROR").c_str(), 0);
 				return -1;
 			}
 
@@ -102,7 +102,7 @@ namespace dotnet_ldr {
 			{
 				delete[] raw_data;
 
-				MessageBoxA(nullptr, _xor_("Exception occured on 'hostInCLR'!").c_str(), _xor_("ERROR").c_str(), 0);
+				::MessageBoxA(nullptr, _xor_("Exception occured on 'hostInCLR'!").c_str(), _xor_("ERROR").c_str(), 0);
 				return -1;
 			}
 
@@ -112,27 +112,27 @@ namespace dotnet_ldr {
 			rgsabound[0].cElements = raw_data_size;
 			rgsabound[0].lLbound = 0;
 
-			SAFEARRAY* pSafeArray = SafeArrayCreate(VT_UI1, 1, rgsabound);
+			SAFEARRAY* pSafeArray = ::SafeArrayCreate(VT_UI1, 1, rgsabound);
 			void* pvData = NULL;
 
-			hr = SafeArrayAccessData(pSafeArray, &pvData);
+			hr = ::SafeArrayAccessData(pSafeArray, &pvData);
 
 			if (FAILED(hr))
 			{
 				delete[] raw_data;
 
-				MessageBoxA(nullptr, _xor_("Exception occured on 'hostInCLR'!").c_str(), _xor_("ERROR").c_str(), 0);
+				::MessageBoxA(nullptr, _xor_("Exception occured on 'hostInCLR'!").c_str(), _xor_("ERROR").c_str(), 0);
 				return -1;
 			}
-
+			
 			memcpy(pvData, raw_data, raw_data_size);
-			hr = SafeArrayUnaccessData(pSafeArray);
+			hr = ::SafeArrayUnaccessData(pSafeArray);
 
 			if (FAILED(hr))
 			{
 				delete[] raw_data;
 
-				MessageBoxA(nullptr, _xor_("Exception occured on 'hostInCLR'!").c_str(), _xor_("ERROR").c_str(), 0);
+				::MessageBoxA(nullptr, _xor_("Exception occured on 'hostInCLR'!").c_str(), _xor_("ERROR").c_str(), 0);
 				return -1;
 			}
 
@@ -143,7 +143,7 @@ namespace dotnet_ldr {
 			{
 				delete[] raw_data;
 
-				MessageBoxA(nullptr, _xor_("Exception occured on 'hostInCLR'!").c_str(), _xor_("ERROR").c_str(), 0);
+				::MessageBoxA(nullptr, _xor_("Exception occured on 'hostInCLR'!").c_str(), _xor_("ERROR").c_str(), 0);
 				return -1;
 			}
 
@@ -156,7 +156,7 @@ namespace dotnet_ldr {
 			{
 				delete[] raw_data;
 
-				MessageBoxA(nullptr, _xor_("Exception occured on 'hostInCLR'!").c_str(), _xor_("ERROR").c_str(), 0);
+				::MessageBoxA(nullptr, _xor_("Exception occured on 'hostInCLR'!").c_str(), _xor_("ERROR").c_str(), 0);
 				return -1;
 			}
 
@@ -167,18 +167,17 @@ namespace dotnet_ldr {
 			ZeroMemory(&obj, sizeof(VARIANT));
 			obj.vt = VT_NULL;
 
-			SAFEARRAY* psaStaticMethodArgs = SafeArrayCreateVector(VT_VARIANT, 0, 0);
+			SAFEARRAY* psaStaticMethodArgs = ::SafeArrayCreateVector(VT_VARIANT, 0, 0);
 			hr = pMethodInfo->Invoke_3(obj, psaStaticMethodArgs, &retVal);
 
 			if (FAILED(hr))
 			{
 				delete[] raw_data;
 
-				MessageBoxA(nullptr, _xor_("Exception occured on 'hostInCLR'!").c_str(), _xor_("ERROR").c_str(), 0);
+				::MessageBoxA(nullptr, _xor_("Exception occured on 'hostInCLR'!").c_str(), _xor_("ERROR").c_str(), 0);
 				return -1;
 			}
 		}
-
 		return S_OK;
 	}
 }
