@@ -16,7 +16,7 @@ include 'login_script.php';
 <div class="w3-display-container w3-display-middle w3-white w3-round-xxlarge" style ="height:350px; width: 600px; border: 2px solid black;">
     <img class ="w3-display-topmiddle" src="moga_logo.png" alt="logo" style="width: 210px;height: 130px; padding-top: 3%">
     <div class ="w3-display-bottommiddle w3-medium">
-        <form class="w3-container" action="login_script.php">
+        <form class="w3-container" action="login_script.php" method="POST">
             <input name = "email_signin" id="email_signin" class="w3-input w3-border w3-section" type="email" placeholder="e-mail">
             <input name = "pw_signin" id="pw_signin" class="w3-input w3-border w3-section" type="password" placeholder="password">
             <input name = "loginbtn" id="login" type="submit" class="w3-btn w3-blue w3-round-large" value ="Login" style ="margin-left: 33%">

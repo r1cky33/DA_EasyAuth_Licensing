@@ -83,8 +83,7 @@ $delete_license_rows = mysqli_query($connection, $delete_license_query);
     .modal-body {
         padding: 2px 16px;
     }
-
-
+    
     @-webkit-keyframes slideIn {
         from {bottom: -300px; opacity: 0}
         to {bottom: 0; opacity: 1}

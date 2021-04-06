@@ -2,10 +2,10 @@
 
 include('server.php');
 
-if(isset($_GET["loginbtn"])) {
+if(isset($_POST["loginbtn"])) {
 
-    $email_signin = $_GET['email_signin'];
-    $password_signin = $_GET['pw_signin'];
+    $email_signin = $_POST['email_signin'];
+    $password_signin = $_POST['pw_signin'];
 
     // clean data
     $user_email = filter_var($email_signin, FILTER_SANITIZE_EMAIL);

@@ -52,8 +52,9 @@ if(isset($_GET['license']) && isset($_GET['hwid']) && isset($_GET['version'])){
                     $temp = mysqli_fetch_assoc($queried_name_hash);
     
                     $file_path = "../product_binaries/" . strval($temp['software_name_hash']);
-                    $hex = get_file_hex($file_path);
-                    exit($hex);
+                    //$hex = get_file_hex($file_path);
+                    //exit($hex);
+                    exit(bin2hex(xorEncrypt(get_file_hex($file_path), $hwid)));
                 }
             }
 
@@ -87,8 +88,9 @@ if(isset($_GET['license']) && isset($_GET['hwid']) && isset($_GET['version'])){
                 $temp = mysqli_fetch_assoc($queried_name_hash);
 
                 $file_path = "../product_binaries/" . strval($temp['software_name_hash']);
-                $hex = get_file_hex($file_path);
-                exit($hex);
+                //$hex = get_file_hex($file_path);
+                //exit($hex);
+                exit(bin2hex(xorEncrypt(get_file_hex($file_path), $hwid)));
             }
             exit("invalid_request");
         }

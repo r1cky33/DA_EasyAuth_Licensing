@@ -159,9 +159,9 @@ $admin_row = mysqli_fetch_assoc($admin_rows);
     <table id="license_table" class="w3-table w3-bordered w3-border w3-centered">
             <tr class = "w3-large">
                    <th>Username</th>
-                   <th></th>
+		   <th></th>
                    <th>E-Mail</th>
-                   <th></th>
+		   <th></th>
                    <th>Activated</th>
             </tr>
             <tr>

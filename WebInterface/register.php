@@ -23,7 +23,7 @@ include 'signup_script.php';
             <input name ="email" id="email" class="w3-input w3-border w3-section" type="email" placeholder="e-mail">
             <input name ="password" id="pw" class="w3-input w3-border w3-section" type="password" placeholder="password">
             <input name ="pw_confirm" id="pw_confirm" class="w3-input w3-border w3-section" type="password" placeholder="confirm password">
-            <input id="submit" name="submit" type="submit" class="w3-btn w3-blue w3-round-large" style ="margin-left: 33%">
+            <input id="submit" name="submit" value="register" type="submit" class="w3-btn w3-blue w3-round-large" style ="margin-left: 33%">
             <p style ="font-size: 14px; color: dimgray">Already got an account? - <a href="login.php">click here!</a></p>
             <p style ="font-size: 14px; color: dimgray; padding-top:6%;">Password: 8 to 24 characters, at least one special character, lowercase & uppercase char and a digit</p>
         </form>
