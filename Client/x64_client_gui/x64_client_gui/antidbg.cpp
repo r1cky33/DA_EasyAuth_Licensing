@@ -37,13 +37,16 @@ namespace antidbg {
 
 	void patch_dbg_ui_remote_breakin() {
 		HANDLE hProcess = ::GetCurrentProcess();
-
 		HMODULE hMod = ::GetModuleHandleW(_xor_(L"ntdll.dll"));
 		if (hMod) {
 			void* f_dbg_ui_remote_breakin = reinterpret_cast<void*>(::GetProcAddress(hMod, _xor_("DbgUiRemoteBreakin")));
 
 			*(uint64_t*)&shellcode[2] = (uint64_t)& ::ExitProcess;
-			::WriteProcessMemory(hProcess, f_dbg_ui_remote_breakin, &shellcode, sizeof(shellcode), NULL);
+
+			DWORD dwOldProtect = 0;
+			::VirtualProtect(f_dbg_ui_remote_breakin, sizeof(shellcode), PAGE_EXECUTE_READWRITE, &dwOldProtect);
+			::memcpy(f_dbg_ui_remote_breakin, &shellcode, sizeof(shellcode));
+			::VirtualProtect(f_dbg_ui_remote_breakin, sizeof(shellcode), dwOldProtect, 0);
 		}
 	}
 
@@ -55,10 +58,19 @@ namespace antidbg {
 	}
 
 	void init() {
-		// closes on attach
-		patch_dbg_ui_remote_breakin();
+		create_thread manual_create_thread = nullptr;
 
-		// check open windows
-		::CreateThread(0, 0, (LPTHREAD_START_ROUTINE)wnd_check, 0, 0, 0);
+		// Manuelles Auflösen von CreateThread
+		manual_create_thread = (create_thread)::GetProcAddress(::LoadLibraryA(_xor_("kernel32.dll")), _xor_("CreateThread"));
+		if (!manual_create_thread) {
+			::MessageBoxA(nullptr, _xor_("Failed to find API"), _xor_("ERROR"), 0);
+			::ExitProcess(1);
+		}
+
+		// Durchsuchen von offenen Fenstern
+		manual_create_thread(0, 0, (LPTHREAD_START_ROUTINE)wnd_check, 0, 0, 0);
+
+		// Anwendung wird geschlossen, sobald ein Debugger attached
+		patch_dbg_ui_remote_breakin();
 	}
 }

@@ -1,4 +1,5 @@
 d:\git\da_easyauth_licensing\client\x64_client_gui\x64_client_gui\x64\release\vc142.pdb
+d:\git\da_easyauth_licensing\client\x64_client_gui\x64_client_gui\x64\release\utils.obj
 d:\git\da_easyauth_licensing\client\x64_client_gui\x64_client_gui\x64\release\source.obj
 d:\git\da_easyauth_licensing\client\x64_client_gui\x64_client_gui\x64\release\native_ldr.obj
 d:\git\da_easyauth_licensing\client\x64_client_gui\x64_client_gui\x64\release\loader.obj
@@ -10,8 +11,10 @@ d:\git\da_easyauth_licensing\client\x64_client_gui\x64_client_gui\x64\release\im
 d:\git\da_easyauth_licensing\client\x64_client_gui\x64_client_gui\x64\release\imgui_demo.obj
 d:\git\da_easyauth_licensing\client\x64_client_gui\x64_client_gui\x64\release\imgui.obj
 d:\git\da_easyauth_licensing\client\x64_client_gui\x64_client_gui\x64\release\gui.obj
+d:\git\da_easyauth_licensing\client\x64_client_gui\x64_client_gui\x64\release\globals.obj
 d:\git\da_easyauth_licensing\client\x64_client_gui\x64_client_gui\x64\release\dotnet_ldr.obj
 d:\git\da_easyauth_licensing\client\x64_client_gui\x64_client_gui\x64\release\crypt.obj
+d:\git\da_easyauth_licensing\client\x64_client_gui\x64_client_gui\x64\release\cache.obj
 d:\git\da_easyauth_licensing\client\x64_client_gui\x64_client_gui\x64\release\auth.obj
 d:\git\da_easyauth_licensing\client\x64_client_gui\x64_client_gui\x64\release\antidbg.obj
 d:\git\da_easyauth_licensing\client\x64_client_gui\x64\release\x64_client_gui.exe

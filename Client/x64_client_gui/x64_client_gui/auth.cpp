@@ -32,7 +32,7 @@ namespace auth {
 		std::string version = _xor_("&version=");
 		version.append(LOADER_VERSION);
 
-		std::string url = std::string(_xor_("http://localhost/api/auth_val/auth.php?")) + get_l + get_h + version;
+		std::string url = std::string(_xor_("http://localhost:8000/auth/auth.php?")) + get_l + get_h + version;
 
 		// remove empty spaces from the string
 		std::string removeables = " ";
@@ -42,10 +42,10 @@ namespace auth {
 
 		auto curl = curl_easy_init();
 		if (curl) {
-			curl_easy_setopt(curl, CURLOPT_URL, url);
+			curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
 			curl_easy_setopt(curl, CURLOPT_NOPROGRESS, 1L);
-			curl_easy_setopt(curl, CURLOPT_USERPWD, _xor_("user:pass"));
-			curl_easy_setopt(curl, CURLOPT_USERAGENT, _xor_("curl/7.42.0"));
+			curl_easy_setopt(curl, CURLOPT_USERPWD, "user:pass");
+			curl_easy_setopt(curl, CURLOPT_USERAGENT, "curl/7.42.0");
 			curl_easy_setopt(curl, CURLOPT_MAXREDIRS, 50L);
 			curl_easy_setopt(curl, CURLOPT_TCP_KEEPALIVE, 1L);
 
@@ -73,19 +73,17 @@ namespace auth {
 
 				{
 					//	handle non-pe-cases
-					if (decoded.compare(std::string(_xor_("expired"))) == 0) {
+					if (decoded.compare(std::string(_xor_("expired"))) == 0) 
 						return auth_state::expired;
-					}
 
-					if (decoded.compare(std::string(_xor_("invalid_request"))) == 0) {
+					if (decoded.compare(std::string(_xor_("invalid_request"))) == 0) 
 						return auth_state::invalid_request;
-					}
 
-					if (decoded.compare(std::string(_xor_("banned"))) == 0) {
+					if (decoded.compare(std::string(_xor_("banned"))) == 0) 
 						return auth_state::banned;
-					}
 				}
 
+				// copy raw bytes to buffer
 				uint8_t* raw_data = (uint8_t*)malloc(crypt::hex2bin(decoded).size());
 				memcpy(raw_data, crypt::hex2bin(decoded).c_str(), crypt::hex2bin(decoded).size());
 
@@ -120,12 +118,22 @@ namespace auth {
 
 	std::string get_hwid() {
 		HKEY hKey;
-		LONG lRes = ::RegOpenKeyExW(HKEY_LOCAL_MACHINE, _xor_(L"SOFTWARE\\Microsoft\\Cryptography"), 0, KEY_READ, &hKey);
+
+		LONG lRes = ::RegOpenKeyExW(HKEY_LOCAL_MACHINE, 
+			_xor_(L"SOFTWARE\\Microsoft\\Cryptography"),
+			0,
+			KEY_READ,
+			&hKey);
+
 		bool bExistsAndSuccess(lRes == ERROR_SUCCESS);
 		bool bDoesNotExistsSpecifically(lRes == ERROR_FILE_NOT_FOUND);
 		std::wstring strValueOfBinDir;
 		std::wstring strKeyDefaultValue;
-		get_string_reg_key(hKey, std::wstring(_xor_(L"MachineGuid")), strValueOfBinDir, std::wstring(_xor_(L"bad")));
+
+		get_string_reg_key(hKey, 
+			std::wstring(_xor_(L"MachineGuid")), 
+			strValueOfBinDir, 
+			std::wstring(_xor_(L"bad")));
 
 		std::string hwid(strValueOfBinDir.begin(), strValueOfBinDir.end());
 		return hwid;

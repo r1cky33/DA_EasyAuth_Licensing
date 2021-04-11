@@ -1,9 +1,9 @@
-﻿// Created by Microsoft (R) C/C++ Compiler Version 14.27.29112.0 (f105e3e7).
+﻿// Created by Microsoft (R) C/C++ Compiler Version 14.27.29112.0 (42a1b09e).
 //
-// D:\git\DA_EasyAuth_Licensing\Client\x64_client_gui\x64_client_gui\x64\Debug\mscorlib.tlh
+// D:\git\DA_EasyAuth_Licensing\Client\x64_client_gui_backup\x64_client_gui\x64\Debug\mscorlib.tlh
 //
 // C++ source equivalent of type library C:\Windows\Microsoft.NET\Framework64\v4.0.30319\mscorlib.tlb
-// compiler-generated file created 03/10/21 at 23:56:53 - DO NOT EDIT!
+// compiler-generated file created 03/17/21 at 20:19:22 - DO NOT EDIT!
 
 #pragma once
 #pragma pack(push, 8)

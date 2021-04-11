@@ -47,9 +47,8 @@ namespace binldr {
 					- without new thread (current thread)
 			*/
 			void* oep = (LPVOID)(nt_header->OptionalHeader.AddressOfEntryPoint + (UINT_PTR)image_base);
-			native_ldr::execImageEntrypoint(oep, false);
+			native_ldr::execImageEntrypoint(oep, true);
 		}
-
 
 		return true;
 	}

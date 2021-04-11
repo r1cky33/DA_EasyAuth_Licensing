@@ -16,9 +16,6 @@ namespace native_ldr {
 			if (IMAGE_FILE_MACHINE_AMD64 != nt_header->FileHeader.Machine)
 				return nullptr;
 
-			PIMAGE_SECTION_HEADER section_header =
-				(PIMAGE_SECTION_HEADER)(raw_image->e_lfanew + sizeof(*nt_header) + (UINT_PTR)raw_image);
-
 			/*
 				-	Allocate memory where we will map the image to
 				Buffer needs to be sized with the virtual size of the image + (RWX)
@@ -35,14 +32,13 @@ namespace native_ldr {
 			/*
 				We can write the images headers directly from the buffer. This step is not 100% necessary
 				because the header isn't needed to execute the image in memory.
-
-				In order to prevent dumping the client binary, writing the headers could be omitted.
 			*/
 			::memcpy(mapped_base, (LPVOID)raw_image, nt_header->OptionalHeader.SizeOfHeaders);
 
-			/*
-				Copy each section to its foreseen virtual address.
-			*/
+			// Copy each section to its foreseen virtual address.
+			PIMAGE_SECTION_HEADER section_header =
+				(PIMAGE_SECTION_HEADER)(raw_image->e_lfanew + sizeof(*nt_header) + (UINT_PTR)raw_image);
+
 			for (int i = 0; i < nt_header->FileHeader.NumberOfSections; i++) {
 				::memcpy(
 					(LPVOID)(section_header->VirtualAddress + (UINT_PTR)mapped_base),
@@ -65,21 +61,13 @@ namespace native_ldr {
 		ULONG_PTR size;
 		PULONG_PTR intruction;
 
-		/*
-			Get relotaction block from headers.
-		*/
 		PIMAGE_BASE_RELOCATION reloc_block =
 			(PIMAGE_BASE_RELOCATION)(nt_header->OptionalHeader.DataDirectory[IMAGE_DIRECTORY_ENTRY_BASERELOC].VirtualAddress +
 				(UINT_PTR)dos_header);
 
-		/*
-			Iterate through all blocks
-		*/
 		while (reloc_block->VirtualAddress) {
-			// get BlockSize
 			size = (reloc_block->SizeOfBlock - sizeof(reloc_block)) / sizeof(WORD);
 			PWORD fixup = (PWORD)((ULONG_PTR)reloc_block + sizeof(reloc_block));
-
 
 			for (int i = 0; i < size; i++, fixup++) {
 				if (IMAGE_REL_BASED_DIR64 == *fixup >> 12) {

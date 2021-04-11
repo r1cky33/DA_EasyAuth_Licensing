@@ -137,14 +137,14 @@ C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.2
           [
               _Iter=wchar_t *
           ]
-D:\git\DA_EasyAuth_Licensing\Client\x64_client_gui\x64_client_gui\auth.cpp(129): message : Siehe Verweis auf die gerade kompilierte Instanziierung "std::basic_string<char,std::char_traits<char>,std::allocator<char>>::basic_string<std::_String_iterator<std::_String_val<std::_Simple_types<_Elem>>>,0>(_Iter,_Iter,const _Alloc &)" der Funktions-Vorlage.
+D:\git\DA_EasyAuth_Licensing\Client\x64_client_gui_backup\x64_client_gui\auth.cpp(129): message : Siehe Verweis auf die gerade kompilierte Instanziierung "std::basic_string<char,std::char_traits<char>,std::allocator<char>>::basic_string<std::_String_iterator<std::_String_val<std::_Simple_types<_Elem>>>,0>(_Iter,_Iter,const _Alloc &)" der Funktions-Vorlage.
           with
           [
               _Elem=wchar_t,
               _Iter=std::_String_iterator<std::_String_val<std::_Simple_types<wchar_t>>>,
               _Alloc=std::allocator<char>
           ]
-D:\git\DA_EasyAuth_Licensing\Client\x64_client_gui\x64_client_gui\auth.cpp(129): message : Siehe Verweis auf die gerade kompilierte Instanziierung "std::basic_string<char,std::char_traits<char>,std::allocator<char>>::basic_string<std::_String_iterator<std::_String_val<std::_Simple_types<_Elem>>>,0>(_Iter,_Iter,const _Alloc &)" der Funktions-Vorlage.
+D:\git\DA_EasyAuth_Licensing\Client\x64_client_gui_backup\x64_client_gui\auth.cpp(129): message : Siehe Verweis auf die gerade kompilierte Instanziierung "std::basic_string<char,std::char_traits<char>,std::allocator<char>>::basic_string<std::_String_iterator<std::_String_val<std::_Simple_types<_Elem>>>,0>(_Iter,_Iter,const _Alloc &)" der Funktions-Vorlage.
           with
           [
               _Elem=wchar_t,
@@ -265,8 +265,8 @@ C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\d3d10.h(608,1):
 C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\shared\winerror.h(56795): message : Siehe vorherige Definition von "D3D10_ERROR_TOO_MANY_UNIQUE_STATE_OBJECTS"
 C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\d3d10.h(609,1): warning C4005: "D3D10_ERROR_FILE_NOT_FOUND": Makro-Neudefinition
 C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\shared\winerror.h(56804): message : Siehe vorherige Definition von "D3D10_ERROR_FILE_NOT_FOUND"
-D:\git\DA_EasyAuth_Licensing\Client\x64_client_gui\x64_client_gui\crypt.cpp(22,40): warning C4267: "Initialisierung": Konvertierung von "size_t" nach "unsigned long", Datenverlust möglich
-D:\git\DA_EasyAuth_Licensing\Client\x64_client_gui\x64_client_gui\crypt.cpp(23,42): warning C4267: "Initialisierung": Konvertierung von "size_t" nach "unsigned long", Datenverlust möglich
+D:\git\DA_EasyAuth_Licensing\Client\x64_client_gui_backup\x64_client_gui\crypt.cpp(22,40): warning C4267: "Initialisierung": Konvertierung von "size_t" nach "unsigned long", Datenverlust möglich
+D:\git\DA_EasyAuth_Licensing\Client\x64_client_gui_backup\x64_client_gui\crypt.cpp(23,42): warning C4267: "Initialisierung": Konvertierung von "size_t" nach "unsigned long", Datenverlust möglich
   dotnet_ldr.cpp
 C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\dxgitype.h(12,1): warning C4005: "DXGI_STATUS_OCCLUDED": Makro-Neudefinition
 C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\shared\winerror.h(56342): message : Siehe vorherige Definition von "DXGI_STATUS_OCCLUDED"
@@ -324,7 +324,7 @@ C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\d3d10.h(608,1):
 C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\shared\winerror.h(56795): message : Siehe vorherige Definition von "D3D10_ERROR_TOO_MANY_UNIQUE_STATE_OBJECTS"
 C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\d3d10.h(609,1): warning C4005: "D3D10_ERROR_FILE_NOT_FOUND": Makro-Neudefinition
 C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\shared\winerror.h(56804): message : Siehe vorherige Definition von "D3D10_ERROR_FILE_NOT_FOUND"
-D:\git\DA_EasyAuth_Licensing\Client\x64_client_gui\x64_client_gui\dotnet_ldr.cpp(112,42): warning C4267: "=": Konvertierung von "size_t" nach "ULONG", Datenverlust möglich
+D:\git\DA_EasyAuth_Licensing\Client\x64_client_gui_backup\x64_client_gui\dotnet_ldr.cpp(112,42): warning C4267: "=": Konvertierung von "size_t" nach "ULONG", Datenverlust möglich
   globals.cpp
 C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\dxgitype.h(12,1): warning C4005: "DXGI_STATUS_OCCLUDED": Makro-Neudefinition
 C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\shared\winerror.h(56342): message : Siehe vorherige Definition von "DXGI_STATUS_OCCLUDED"
@@ -732,4 +732,4 @@ C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\d3d10.h(609,1):
 C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\shared\winerror.h(56804): message : Siehe vorherige Definition von "D3D10_ERROR_FILE_NOT_FOUND"
   Code wird generiert...
 MSVCRTD.lib(initializers.obj) : warning LNK4098: Standardbibliothek "libcmtd.lib" steht in Konflikt mit anderen Bibliotheken; /NODEFAULTLIB:Bibliothek verwenden.
-  x64_client_gui.vcxproj -> D:\git\DA_EasyAuth_Licensing\Client\x64_client_gui\x64\Debug\x64_client_gui.exe
+  x64_client_gui.vcxproj -> D:\git\DA_EasyAuth_Licensing\Client\x64_client_gui_backup\x64\Debug\x64_client_gui.exe
